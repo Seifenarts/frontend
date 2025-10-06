@@ -1,7 +1,18 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
-import '../styles/globals.css';
-import Link from "next/link";
+import "./globals.css";
+import { Poppins } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { store } from "@/redux/store";
+import { Provider } from "react-redux";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-poppins",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,11 +24,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Soap Bouquet Shop",
-  description: "Frontend for Soap Bouquet Shop",
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -25,40 +31,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900 min-h-screen flex flex-col`}>
-        <Header />
-        <main className="flex-1 container mx-auto px-4 py-6">
-          {children}
-        </main>
-        <Footer />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} mx-auto max-w-[1600px] antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col`}
+      >
+        <Provider store={store}>
+          <Header />
+
+          <main className="flex-1"> {children}</main>
+          <Footer />
+        </Provider>
       </body>
     </html>
-  );
-}
-
-// ---------------- Header ----------------
-function Header() {
-  return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">Soap Bouquet Shop</h1>
-        <nav className="space-x-4">
-          <Link href="/" className="hover:text-blue-500">Home</Link>
-          <Link href="/products" className="hover:text-blue-500">Products</Link>
-          <Link href="/about" className="hover:text-blue-500">About</Link>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
-// ---------------- Footer ----------------
-function Footer() {
-  return (
-    <footer className="bg-white shadow-inner mt-8">
-      <div className="container mx-auto px-4 py-4 text-center text-sm text-gray-500">
-        &copy; {new Date().getFullYear()} Soap Bouquet Shop. All rights reserved.
-      </div>
-    </footer>
   );
 }
