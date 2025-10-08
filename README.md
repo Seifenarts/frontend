@@ -1,65 +1,56 @@
-Frontend of the Soap Bouquet Shop project built with Next.js + TypeScript + Tailwind CSS + ShadCN UI.
+# SeifenArts Frontend
+
+SeifenArts ist ein realer Online-Shop für handgemachte Seifenbouquets.  
+Dieses Frontend wurde mit **Next.js**, TypeScript, Redux Toolkit und Tailwind CSS gebaut, mit UI-Komponenten von ShadCN.
+
+🌎 **Deployment:** *(Live-Demo-Link)*
 
 ---
 
-## Getting Started
+## 📋 Features
 
-Follow these instructions to set up the project locally.
+- Anzeige der Produkte  
+- Sortierung nach Kategorien oder Preis  
+- Benutzerregistrierung, Login und Passwort-Wiederherstellung  
+- Warenkorb-Funktionalität  
+- Erstellung und Abschluss von Bestellungen  
+- Zahlungsintegration  
+- Seiten über das Unternehmen und den Produktionsprozess  
 
-### Prerequisites
+---
 
-- Node.js >= 22.x
-- npm >= 10.x or yarn
-- Git
+## 🛠️ Tech Stack
 
-### Install dependencies:
+- **TypeScript**  
+- **Next.js 15.5.3**  
+- **React 19.1.0**  
+- **Redux Toolkit + React Redux**  
+- **Tailwind CSS + tailwind-merge + tailwindcss-animate**  
+- **ShadCN UI**  
+- **Radix UI Komponenten** (`Accordion`, `Dialog`, `Toggle`, `Slot`)  
+- **Axios** (HTTP-Client)  
+- **Lucide React** (Icons)  
+- **clsx & class-variance-authority** (bedingtes Styling)
 
-npm install
-npx tailwindcss init -p
+**Dev Tools:** ESLint, TypeScript, PostCSS, Autoprefixer  
 
-### Run the development server:
-npm run dev
+## ✅ Hinweise
 
-Open http://localhost:3000
- to view the project in the browser.
- 
-## Getting Started
+Dieses Frontend nutzt den Next.js App Router und ist mit dem Backend für Produktverwaltung und Bestellungen verbunden.
+State-Management wird über Redux Toolkit gehandhabt, UI-Zustände über ShadCN UI und Radix-Komponenten.
+Tailwind CSS zusammen mit tailwind-merge sorgt für konsistentes und responsives Styling.
 
-First, run the development server:
+---
 
+## 🚀 Installation & Start
+
+### Voraussetzungen
+- Node.js 20+  
+- npm 9+  
+
+### Installation
 ```bash
+git clone https://github.com/LutsDM/seifenarts-frontend.git
+cd seifenarts-frontend
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-
-
-
-
