@@ -7,7 +7,7 @@ const Footer: FC = () => {
   return (
     <footer className="w-full mx-auto px-24 py-4 text-center text-sm text-gray-500  border-t border-gray-300">
       <div className="flex flex-col gap-4">
-        <div className="flex justify-between ">
+        <div className="flex justify-between sm:flex-col">
           <div>&copy; {new Date().getFullYear()} Anna's Seifenarts</div>
           <div className="flex gap-2">
             <p>Durch die Nutzung dieser Website akzeptieren Sie unsere:</p>

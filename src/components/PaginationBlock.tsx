@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/pagination"
 
 interface PaginationBlockProps {
-  currentPage: number
+  currentPage: number 
   totalPages: number
-  onPageChange: (page: number) => void
+  onPageChange: (page: number) => void 
 }
 
 export const PaginationBlock: React.FC<PaginationBlockProps> = ({
@@ -33,10 +33,10 @@ export const PaginationBlock: React.FC<PaginationBlockProps> = ({
             href="#"
             onClick={(e) => {
               e.preventDefault()
-              if (currentPage > 1) onPageChange(currentPage - 1)
+              if (currentPage > 0) onPageChange(currentPage - 1)
             }}
-            aria-disabled={currentPage === 1}
-            className={currentPage === 1 ? "opacity-50 pointer-events-none" : ""}
+            aria-disabled={currentPage === 0}
+            className={currentPage === 0 ? "opacity-50 pointer-events-none" : ""}
           />
         </PaginationItem>
 
@@ -44,10 +44,10 @@ export const PaginationBlock: React.FC<PaginationBlockProps> = ({
           <PaginationItem key={page}>
             <PaginationLink
               href="#"
-              isActive={page === currentPage}
+              isActive={page === currentPage + 1} 
               onClick={(e) => {
                 e.preventDefault()
-                onPageChange(page)
+                onPageChange(page - 1) 
               }}
             >
               {page}
@@ -60,10 +60,10 @@ export const PaginationBlock: React.FC<PaginationBlockProps> = ({
             href="#"
             onClick={(e) => {
               e.preventDefault()
-              if (currentPage < totalPages) onPageChange(currentPage + 1)
+              if (currentPage < totalPages - 1) onPageChange(currentPage + 1)
             }}
-            aria-disabled={currentPage === totalPages}
-            className={currentPage === totalPages ? "opacity-50 pointer-events-none" : ""}
+            aria-disabled={currentPage === totalPages - 1}
+            className={currentPage === totalPages - 1 ? "opacity-50 pointer-events-none" : ""}
           />
         </PaginationItem>
       </PaginationContent>

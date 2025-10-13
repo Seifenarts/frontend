@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "@/redux/axios";
-import type { ProductResponse } from "./productSlice";
+import { type ProductResponse, type Product } from "./productSlice";
 
 export const loadProducts = createAsyncThunk<
   ProductResponse,
@@ -22,3 +22,19 @@ export const loadProducts = createAsyncThunk<
     }
   }
 );
+
+export const findProduct = createAsyncThunk<
+  Product,
+  { id: number },
+  { rejectValue: string }
+>("product/findProduct", async ({ id }, { rejectWithValue }) => {
+  try {
+    const response = await api.get<Product>(`/products/${id}`);
+    return response.data;
+  } catch (err: any) {
+    console.error(err);
+    const message =
+      err.response?.data?.message || err.message || "Failed to load product";
+    return rejectWithValue(message);
+  }
+});

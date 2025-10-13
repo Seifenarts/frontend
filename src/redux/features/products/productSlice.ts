@@ -1,80 +1,101 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { loadProducts } from './productAction'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { findProduct, loadProducts } from "./productAction";
 
 export interface Product {
-  id: number
-  title: string
-  price: number
-  size: string
-  deliveryPrice: number
-  shortDescription: string
-  fullDescription: string
-  composition: string
-  aromas: string[]
-  imageUrls: string[]
+  id: number;
+  title: string;
+  price: number;
+  size: string;
+  deliveryPrice: number;
+  shortDescription: string;
+  fullDescription: string;
+  composition: string;
+  aromas: string[];
+  imageUrls: string[];
 }
 
 export interface ProductResponse {
-  content: Product[]
-  number: number
-  totalPages: number
-  totalElements: number
+  content: Product[];
+  number: number;
+  totalPages: number;
+  totalElements: number;
 }
 
 export interface ProductState {
-  items: Product[]
-  isLoading: boolean
-  error: string | null
-  page: number
-  totalPages: number
-  totalElements: number
+  items: Product[];
+  isLoading: boolean;
+  error: string | null;
+  page: number;
+  totalPages: number;
+  totalElements: number;
+  selectedProduct: Product | null;
 }
 
 const initialState: ProductState = {
   items: [],
   isLoading: false,
   error: null,
-  page: 1,
+  page: 0,
   totalPages: 0,
   totalElements: 0,
-}
+  selectedProduct: null,
+};
 
 export const productSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
     clearProducts: (state) => {
-      state.items = []
-      state.page = 1
-      state.totalPages = 0
-      state.totalElements = 0
-      state.error = null
-      state.isLoading = false
+      state.items = [];
+      state.page = 0;
+      state.totalPages = 0;
+      state.totalElements = 0;
+      state.error = null;
+      state.isLoading = false;
     },
     setPage: (state, action: PayloadAction<number>) => {
-      state.page = action.payload
+      state.page = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loadProducts.pending, (state) => {
-        state.isLoading = true
-        state.error = null
+        state.isLoading = true;
+        state.error = null;
       })
-      .addCase(loadProducts.fulfilled, (state, action: PayloadAction<ProductResponse>) => {
-        state.isLoading = false
-        state.items = action.payload.content
-        state.page = action.payload.number + 1
-        state.totalPages = action.payload.totalPages
-        state.totalElements = action.payload.totalElements
-      })
+      .addCase(
+        loadProducts.fulfilled,
+        (state, action: PayloadAction<ProductResponse>) => {
+          state.isLoading = false;
+          state.items = action.payload.content;
+          state.page = action.payload.number;
+          state.totalPages = action.payload.totalPages;
+          state.totalElements = action.payload.totalElements;
+        }
+      )
       .addCase(loadProducts.rejected, (state, action) => {
-        state.isLoading = false
-        state.items = []
-        state.error = action.payload ?? 'Unknown error'
+        state.isLoading = false;
+        state.items = [];
+        state.error = action.payload ?? "Unknown error";
       })
+      .addCase(findProduct.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        findProduct.fulfilled,
+        (state, action: PayloadAction<Product>) => {
+          state.isLoading = false;
+          state.selectedProduct = action.payload;
+        }
+      )
+      .addCase(findProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.items = [];
+        state.error = action.payload ?? "Unknown error";
+      });
   },
-})
+});
 
-export const { clearProducts, setPage } = productSlice.actions
-export default productSlice
+export const { clearProducts, setPage } = productSlice.actions;
+export default productSlice;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/redux/store";
 import { useAppDispatch } from "@/redux/hooks";
@@ -16,17 +16,17 @@ export function GridProducts() {
   const dispatch = useAppDispatch();
   
   useEffect(() => {
-    dispatch(loadProducts({ page: page - 1, size: 8 }));
+    dispatch(loadProducts({ page: page, size: 8 }));
   }, [page, dispatch]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div >
+    <div>
       <div
         className="mx-auto max-w-[1500px] grid 
-  grid-cols-[repeat(auto-fit,minmax(320px,1fr))]"
+  grid-cols-[repeat(auto-fit,minmax(320px,1fr))] place-items-center"
       >
         {items.map((product) => (
           <ProductCard
@@ -42,9 +42,9 @@ export function GridProducts() {
 
       <div className="m-8">
         <PaginationBlock
-          currentPage={page + 1}
+          currentPage={page}
           totalPages={totalPages}
-          onPageChange={(p) => dispatch(setPage(p - 1))}
+          onPageChange={(p) => dispatch(setPage(p))}
         />
       </div>
     </div>
