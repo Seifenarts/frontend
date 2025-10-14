@@ -9,6 +9,8 @@ import {
   DialogContent,
   DialogClose,
 } from "@/components/ui/dialog";
+import { useAppDispatch } from "@/redux/hooks";
+import { loadProducts } from "@/redux/features/products/productAction";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,6 +26,10 @@ const links = [
 ];
 
 const Header: FC = () => {
+  const dispatch = useAppDispatch();
+  const handleClick = () => {
+    dispatch(loadProducts({ page: 0, size: 8 }));
+  };
   return (
     <header className="bg-background h-28">
       <div className="max-width mx-auto px-6 sm:px-2 lg:px-8 py-2 flex items-center justify-between relative">
@@ -39,7 +45,7 @@ const Header: FC = () => {
           ))}
         </nav>
 
-        <Link href="/" className="mx-4 sm:mx-0">
+        <Link href="/" onClick={handleClick} className="mx-4 sm:mx-0">
           <img
             src="/logo.png"
             alt="Anna's Seifenarts Logo"
@@ -47,7 +53,6 @@ const Header: FC = () => {
           />
         </Link>
         <div className="flex m-4 sm:flex-1 ">
-          
           <nav className="hidden flex-1 sm:flex justify-evenly">
             {links.slice(2).map((link) => (
               <Link
