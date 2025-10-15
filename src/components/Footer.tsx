@@ -9,7 +9,7 @@ const Footer: FC = () => {
       <div className="flex flex-col gap-6">
         
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 text-center md:text-left">
-          <div>&copy; {new Date().getFullYear()} Anna's Seifenarts</div>
+          <div>&copy; {new Date().getFullYear()} Anna&apos;s Seifenarts</div>
 
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
             <p>Durch die Nutzung dieser Website akzeptieren Sie unsere:</p>

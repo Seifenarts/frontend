@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "@/redux/axios";
 import { type ProductResponse, type Product } from "./productSlice";
