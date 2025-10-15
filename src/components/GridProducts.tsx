@@ -14,7 +14,7 @@ export function GridProducts() {
     (state: RootState) => state.products
   );
   const dispatch = useAppDispatch();
-  
+
   useEffect(() => {
     dispatch(loadProducts({ page: page, size: 8 }));
   }, [page, dispatch]);
@@ -24,20 +24,21 @@ export function GridProducts() {
 
   return (
     <div>
-      <div
-        className="mx-auto max-w-[1500px] grid 
-  grid-cols-[repeat(auto-fit,minmax(320px,1fr))] place-items-center"
-      >
-        {items.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            description={product.shortDescription}
-            price={`€${product.price}`}
-            imageUrl={product.imageUrls[0]}
-          />
-        ))}
+      <div className="mx-auto max-w-[1500px] grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] place-items-center gap-4">
+        {items?.length ? (
+          items.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              description={product.shortDescription}
+              price={`€${product.price}`}
+              imageUrl={product.imageUrls?.[0] || "/placeholder.png"}
+            />
+          ))
+        ) : (
+          <p>Keine Produkte gefunden</p> 
+        )}
       </div>
 
       <div className="m-8">
