@@ -54,7 +54,7 @@ export default function RecommendedProductsCarousel() {
         Passende Alternativen
       </h1>
       <button
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 ml-64 bg-white/80 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 ml-64 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
         onClick={() => scroll(-300)}
       >
         <ChevronLeft className="w-7 h-7 text-gray-700" />
@@ -89,7 +89,7 @@ export default function RecommendedProductsCarousel() {
       </div>
 
       <button
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
         onClick={() => scroll(300)}
       >
         <ChevronRight className="w-7 h-7 text-gray-700" />

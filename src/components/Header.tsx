@@ -64,22 +64,30 @@ const Header: FC = () => {
               </Link>
             ))}
           </nav>
+          <div className="flex items-center">
+            <div className="relative -translate-y-1">
+              <Link href="/cart">
+                <img
+                  src="/basket_icon.png"
+                  alt="basket_icon"
+                  className="w-6 md:w-7 lg:w-7 "
+                />
+              </Link>
+            </div>
 
-          <div>
-            <Link href="/cart">
-              <img src="/basket_icon.png" alt="basket_icon" />
-            </Link>
+            <div className="hidden sm:flex pl-4 relative -translate-y-0.5 ">
+              <Link href="/languages">
+                <img
+                  src="/languages_icon.png"
+                  alt="languages_icon"
+                  className="w-6 md:w-7 lg:w-7"
+                />
+              </Link>
+            </div>
           </div>
-
-          <div className="hidden sm:flex pl-4 pt-1">
-            <Link href="/languages">
-              <img src="/languages_icon.png" alt="languages_icon" />
-            </Link>
-          </div>
-
           <Dialog>
             <DialogTrigger
-              className="sm:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFD5D4] absolute right-0"
+              className="sm:hidden  rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFD5D4] absolute right-0"
               aria-label="Open menu"
             >
               <svg
