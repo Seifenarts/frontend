@@ -43,8 +43,8 @@ export default function ProductPage({ params }: ProductPageProps) {
   return (
     <div className="flex flex-col gap-4 justify-center">
       <div className="flex justify-center ml-4">
-        <div className="max-w-[900px] flex flex-1 gap-4">
-          <div className="max-w-[130px] flex-1 flex flex-col gap-4">
+        <div className="max-w-[750px] flex flex-1 gap-4">
+          <div className="max-w-[120px] flex-1 flex flex-col gap-4">
             {selectedProduct?.imageUrls?.slice(1, 5).map((img, index) => (
               <img
                 key={index}
@@ -58,19 +58,20 @@ export default function ProductPage({ params }: ProductPageProps) {
             ))}
           </div>
 
-          <div className="flex-1 ">
-            {selectedProduct?.imageUrls &&
-              selectedProduct.imageUrls.length > 0 && (
-                <img
-                  src={selectedProduct.imageUrls[activeIndex]}
-                  alt="mainImg"
-                  className="rounded-[3%]"
-                />
-              )}
+          <div className="flex-1 max-w-[600px] relative">
+            {selectedProduct?.imageUrls?.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt="mainImg"
+                className={`rounded-[3%] absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out
+        ${index === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+              />
+            ))}
           </div>
         </div>
-        
-        <div className="max-w-[350px] flex flex-col mx-12 gap-2 mb-8">
+
+        <div className="max-w-[390px] flex flex-col mx-12 gap-2 mb-8">
           <h3 className={`${inter.className} font-extrabold text-5xl`}>
             {selectedProduct?.title}
           </h3>
@@ -98,7 +99,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                       key={size}
                       className={`${
                         inter.className
-                      } w-[80px] h-[80px] border border-gray-500 flex flex-col items-center justify-center rounded-md transition-all duration-200
+                      } w-[90px] h-[75px] border border-gray-500 flex flex-col items-center justify-center rounded-md transition-all duration-200
                     ${
                       isActive
                         ? "bg-black text-[#be9f4b]"

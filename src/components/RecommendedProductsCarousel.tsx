@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Inter } from "next/font/google";
 import { useSelector } from "react-redux";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -19,6 +19,7 @@ const inter = Inter({
 export default function RecommendedProductsCarousel() {
   const dispatch = useAppDispatch();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isShifted, setIsShifted] = useState(false);
 
   const { items, isLoading, error } = useSelector(
     (state: RootState) => state.products
@@ -30,18 +31,51 @@ export default function RecommendedProductsCarousel() {
     }
   }, [items, dispatch]);
 
-  const scroll = (offset: number) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
-    }
+  const smoothScroll = (offset: number, duration = 1000) => {
+    if (!scrollRef.current) return;
+    const start = scrollRef.current.scrollLeft;
+    const end = start + offset;
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease =
+        progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      scrollRef.current!.scrollLeft = start + (end - start) * ease;
+
+      if (elapsed < duration) requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
   };
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => scroll(300),
-    onSwipedRight: () => scroll(-300),
+    onSwipedLeft: () => smoothScroll(300),
+    onSwipedRight: () => smoothScroll(-300),
     preventScrollOnSwipe: true,
     trackMouse: true,
   });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollRef.current) return;
+      setIsShifted(scrollRef.current.scrollLeft > 0);
+    };
+
+    const scrollEl = scrollRef.current;
+    if (scrollEl) {
+      scrollEl.addEventListener("scroll", handleScroll);
+      handleScroll();
+    }
+
+    return () => {
+      if (scrollEl) scrollEl.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (isLoading) return <div className="text-center py-8">Loading...</div>;
   if (error)
@@ -49,25 +83,32 @@ export default function RecommendedProductsCarousel() {
   if (!items || items.length === 0) return null;
 
   return (
-    <div className="relative w-full my-10">
+    <div className="relative w-full mb-10">
       <h1 className={`${inter.className} text-lg font-bold ml-80 mb-2`}>
         Passende Alternativen
       </h1>
+
       <button
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 ml-64 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
-        onClick={() => scroll(-300)}
+        className={`absolute top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition-all duration-500 ease-in-out`}
+        style={{
+          left: isShifted ? "2rem" : "-4rem",
+          opacity: isShifted ? 1 : 0,
+        }}
+        onClick={() => smoothScroll(-250, 1000)}
+        disabled={!isShifted}
       >
         <ChevronLeft className="w-7 h-7 text-gray-700" />
       </button>
+
       <div
         {...handlers}
         ref={scrollRef}
-        className="flex overflow-x-auto scroll-smooth no-scrollbar pl-72 scroll-container"
+        className="flex overflow-x-auto no-scrollbar pl-72 scroll-container"
       >
         {items.map((product) => (
           <div
             key={product.id}
-            className="min-w-[210px] flex-shrink-0 rounded-2xl  p-2 flex flex-col items-center transition-transform hover:scale-[1.03]"
+            className="min-w-[180px] flex-shrink-0 rounded-2xl p-2 flex flex-col items-center transition-transform hover:scale-[1.03]"
           >
             <Link href={`/products/${product.id}`} className="w-full block">
               <img
@@ -76,7 +117,7 @@ export default function RecommendedProductsCarousel() {
                 className="rounded-lg w-full h-44 object-cover mb-2"
               />
             </Link>
-            <div className="flex w-full justify-between ">
+            <div className="flex w-full justify-between">
               <div className={`${inter.className} font-normal text-xs ml-3`}>
                 {product.title}
               </div>
@@ -90,7 +131,7 @@ export default function RecommendedProductsCarousel() {
 
       <button
         className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
-        onClick={() => scroll(300)}
+        onClick={() => smoothScroll(250, 1000)}
       >
         <ChevronRight className="w-7 h-7 text-gray-700" />
       </button>
