@@ -39,3 +39,19 @@ export const findProduct = createAsyncThunk<
     return rejectWithValue(message);
   }
 });
+
+export const loadRecommendedProducts = createAsyncThunk<
+  Product[],
+  { id: number },
+  { rejectValue: string }
+>("product/recommendedProducts", async ({ id }, { rejectWithValue }) => {
+  try {
+    const response = await api.get<Product[]>(`/products/recommended/${id}`);
+    return response.data;
+  } catch (err: any) {
+    console.error(err);
+    const message =
+      err.response?.data?.message || err.message || "Failed to load products";
+    return rejectWithValue(message);
+  }
+});

@@ -188,7 +188,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
       </div>
-      <RecommendedProductsCarousel />
+      <RecommendedProductsCarousel id={Number(id)} />
     </div>
   );
 }

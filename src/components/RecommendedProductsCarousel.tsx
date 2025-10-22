@@ -5,10 +5,14 @@ import { Inter } from "next/font/google";
 import { useSelector } from "react-redux";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSwipeable } from "react-swipeable";
-import { loadProducts } from "@/redux/features/products/productAction";
+import { loadProducts, loadRecommendedProducts } from "@/redux/features/products/productAction";
 import type { RootState } from "@/redux/store";
 import { useAppDispatch } from "@/redux/hooks";
 import Link from "next/link";
+
+interface RecommendedProductsCarouselProps {
+  id: number;
+}
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,7 +20,8 @@ const inter = Inter({
   display: "swap",
 });
 
-export default function RecommendedProductsCarousel() {
+
+export default function RecommendedProductsCarousel({ id }: RecommendedProductsCarouselProps)  {
   const dispatch = useAppDispatch();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isShifted, setIsShifted] = useState(false);
@@ -27,7 +32,7 @@ export default function RecommendedProductsCarousel() {
 
   useEffect(() => {
     if (!items || items.length === 0) {
-      dispatch(loadProducts({ page: 0, size: 8 }));
+      dispatch(loadRecommendedProducts({id}));
     }
   }, [items, dispatch]);
 
