@@ -3,7 +3,7 @@
 SeifenArts ist ein realer Online-Shop für handgemachte Seifenbouquets.  
 Dieses Frontend wurde mit **Next.js**, TypeScript, Redux Toolkit und Tailwind CSS gebaut, mit UI-Komponenten von ShadCN.
 
-🌎 **Deployment:** *(Live-Demo-Link)*
+🌎 **Deployment:** (https://seifenarts-production-9e4c.up.railway.app/)
 
 ---
 
