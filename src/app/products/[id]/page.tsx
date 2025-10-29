@@ -9,6 +9,7 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import RecommendedProductsCarousel from "@/components/RecommendedProductsCarousel";
+import { use } from 'react';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,18 +17,18 @@ const inter = Inter({
   display: "swap",
 });
 
-interface ProductPageProps {
-  params: { id: string };
+interface ProductPageParams {
+  id: string;
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
+export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const { selectedProduct, isLoading, error } = useSelector(
     (state: RootState) => state.products
   );
   const dispatch = useAppDispatch();
 
-  const { id } = params;
+    const { id } = use(params);
 
   useEffect(() => {
     setActiveIndex(0);

@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { useSelector } from "react-redux";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSwipeable } from "react-swipeable";
-import { loadProducts, loadRecommendedProducts } from "@/redux/features/products/productAction";
+import { loadRecommendedProducts } from "@/redux/features/products/productAction";
 import type { RootState } from "@/redux/store";
 import { useAppDispatch } from "@/redux/hooks";
 import Link from "next/link";
@@ -26,15 +26,13 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isShifted, setIsShifted] = useState(false);
 
-  const { items, isLoading, error } = useSelector(
+  const { recommendedItems, isLoading, error } = useSelector(
     (state: RootState) => state.products
   );
 
-  useEffect(() => {
-    if (!items || items.length === 0) {
-      dispatch(loadRecommendedProducts({id}));
-    }
-  }, [items, dispatch]);
+useEffect(() => {
+  dispatch(loadRecommendedProducts({ id }));
+}, [id, dispatch]);
 
   const smoothScroll = (offset: number, duration = 1000) => {
     if (!scrollRef.current) return;
@@ -85,7 +83,7 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
   if (isLoading) return <div className="text-center py-8">Loading...</div>;
   if (error)
     return <div className="text-center py-8 text-red-500">Error: {error}</div>;
-  if (!items || items.length === 0) return null;
+  
 
   return (
     <div className="relative w-full mb-10">
@@ -110,7 +108,7 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
         ref={scrollRef}
         className="flex overflow-x-auto no-scrollbar pl-72 scroll-container"
       >
-        {items.map((product) => (
+        {recommendedItems.map((product) => (
           <div
             key={product.id}
             className="min-w-[180px] flex-shrink-0 rounded-2xl p-2 flex flex-col items-center transition-transform hover:scale-[1.03]"

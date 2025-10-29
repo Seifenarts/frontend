@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { findProduct, loadProducts, loadRecommendedProducts } from "./productAction";
+import {
+  findProduct,
+  loadProducts,
+  loadRecommendedProducts,
+} from "./productAction";
 
 export interface Product {
   id: number;
@@ -23,6 +27,7 @@ export interface ProductResponse {
 
 export interface ProductState {
   items: Product[];
+  recommendedItems: Product[];
   isLoading: boolean;
   error: string | null;
   page: number;
@@ -33,6 +38,7 @@ export interface ProductState {
 
 const initialState: ProductState = {
   items: [],
+  recommendedItems: [],
   isLoading: false,
   error: null,
   page: 0,
@@ -102,12 +108,12 @@ export const productSlice = createSlice({
         loadRecommendedProducts.fulfilled,
         (state, action: PayloadAction<Product[]>) => {
           state.isLoading = false;
-          state.items = action.payload;
+          state.recommendedItems = action.payload;
         }
       )
       .addCase(loadRecommendedProducts.rejected, (state, action) => {
         state.isLoading = false;
-        state.items = [];
+        state.recommendedItems = [];
         state.error = action.payload ?? "Unknown error";
       });
   },
