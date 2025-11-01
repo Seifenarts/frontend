@@ -5,10 +5,10 @@ import { Inter } from "next/font/google";
 import { useSelector } from "react-redux";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSwipeable } from "react-swipeable";
-import { loadRecommendedProducts } from "@/redux/features/products/productAction";
 import type { RootState } from "@/redux/store";
 import { useAppDispatch } from "@/redux/hooks";
 import Link from "next/link";
+import { loadRecommendedProducts } from "@/redux/features/products/productAction";
 
 interface RecommendedProductsCarouselProps {
   id: number;
@@ -26,11 +26,12 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isShifted, setIsShifted] = useState(false);
 
-  const { recommendedItems, isLoading, error } = useSelector(
-    (state: RootState) => state.products
-  );
+const { recommendedItems, isLoading, error } = useSelector(
+  (state: RootState) => state.recommendedProducts
+);
 
 useEffect(() => {
+  if (!id || recommendedItems.length > 0) return;
   dispatch(loadRecommendedProducts({ id }));
 }, [id, dispatch]);
 

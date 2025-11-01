@@ -1,9 +1,11 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import productSlice from "./features/products/productSlice";
+import { recommendedSlice } from "./features/products/recommendedSlice";
 
 export const store = configureStore({
   reducer: {
-    products: productSlice.reducer
+    products: productSlice.reducer,
+    recommendedProducts: recommendedSlice.reducer
   },
 });
 

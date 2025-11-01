@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} mx-auto max-w-[1600px] antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col `}
+        className={`${geistSans.variable} ${geistMono.variable} mx-auto max-w-[1440px] antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col `}
       >
         <Provider store={store}>
           <Header />
