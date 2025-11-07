@@ -1,7 +1,7 @@
-"use client"
-import { GridProducts } from "@/components/GridProducts";
-import HeroSection from "@/components/HeroSection";
-import React from "react";
+'use client'
+import { GridProducts } from '@/components/GridProducts'
+import HeroSection from '@/components/HeroSection'
+import React from 'react'
 
 const Home: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
         <GridProducts />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

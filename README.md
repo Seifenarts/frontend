@@ -9,30 +9,30 @@ Dieses Frontend wurde mit **Next.js**, TypeScript, Redux Toolkit und Tailwind CS
 
 ## 📋 Features
 
-- Anzeige der Produkte  
-- Sortierung nach Kategorien oder Preis  
-- Benutzerregistrierung, Login und Passwort-Wiederherstellung  
-- Warenkorb-Funktionalität  
-- Erstellung und Abschluss von Bestellungen  
-- Zahlungsintegration  
-- Seiten über das Unternehmen und den Produktionsprozess  
+- Anzeige der Produkte
+- Sortierung nach Kategorien oder Preis
+- Benutzerregistrierung, Login und Passwort-Wiederherstellung
+- Warenkorb-Funktionalität
+- Erstellung und Abschluss von Bestellungen
+- Zahlungsintegration
+- Seiten über das Unternehmen und den Produktionsprozess
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **TypeScript**  
-- **Next.js 15.5.3**  
-- **React 19.1.0**  
-- **Redux Toolkit + React Redux**  
-- **Tailwind CSS + tailwind-merge + tailwindcss-animate**  
-- **ShadCN UI**  
-- **Radix UI Komponenten** (`Accordion`, `Dialog`, `Toggle`, `Slot`)  
-- **Axios** (HTTP-Client)  
-- **Lucide React** (Icons)  
+- **TypeScript**
+- **Next.js 15.5.3**
+- **React 19.1.0**
+- **Redux Toolkit + React Redux**
+- **Tailwind CSS + tailwind-merge + tailwindcss-animate**
+- **ShadCN UI**
+- **Radix UI Komponenten** (`Accordion`, `Dialog`, `Toggle`, `Slot`)
+- **Axios** (HTTP-Client)
+- **Lucide React** (Icons)
 - **clsx & class-variance-authority** (bedingtes Styling)
 
-**Dev Tools:** ESLint, TypeScript, PostCSS, Autoprefixer  
+**Dev Tools:** ESLint, TypeScript, PostCSS, Autoprefixer
 
 ## ✅ Hinweise
 
@@ -45,12 +45,15 @@ Tailwind CSS zusammen mit tailwind-merge sorgt für konsistentes und responsives
 ## 🚀 Installation & Start
 
 ### Voraussetzungen
-- Node.js 20+  
-- npm 9+  
+
+- Node.js 20+
+- npm 9+
 
 ### Installation
+
 ```bash
 git clone https://github.com/LutsDM/seifenarts-frontend.git
 cd seifenarts-frontend
 npm install
 npm run dev
+```

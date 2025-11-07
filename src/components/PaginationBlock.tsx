@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import * as React from "react"
+import * as React from 'react'
 import {
   Pagination,
   PaginationContent,
@@ -8,12 +8,12 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
+} from '@/components/ui/pagination'
 
 interface PaginationBlockProps {
-  currentPage: number 
+  currentPage: number
   totalPages: number
-  onPageChange: (page: number) => void 
+  onPageChange: (page: number) => void
 }
 
 export const PaginationBlock: React.FC<PaginationBlockProps> = ({
@@ -36,7 +36,7 @@ export const PaginationBlock: React.FC<PaginationBlockProps> = ({
               if (currentPage > 0) onPageChange(currentPage - 1)
             }}
             aria-disabled={currentPage === 0}
-            className={currentPage === 0 ? "opacity-50 pointer-events-none" : ""}
+            className={currentPage === 0 ? 'opacity-50 pointer-events-none' : ''}
           />
         </PaginationItem>
 
@@ -44,10 +44,10 @@ export const PaginationBlock: React.FC<PaginationBlockProps> = ({
           <PaginationItem key={page}>
             <PaginationLink
               href="#"
-              isActive={page === currentPage + 1} 
+              isActive={page === currentPage + 1}
               onClick={(e) => {
                 e.preventDefault()
-                onPageChange(page - 1) 
+                onPageChange(page - 1)
               }}
             >
               {page}
@@ -63,7 +63,7 @@ export const PaginationBlock: React.FC<PaginationBlockProps> = ({
               if (currentPage < totalPages - 1) onPageChange(currentPage + 1)
             }}
             aria-disabled={currentPage === totalPages - 1}
-            className={currentPage === totalPages - 1 ? "opacity-50 pointer-events-none" : ""}
+            className={currentPage === totalPages - 1 ? 'opacity-50 pointer-events-none' : ''}
           />
         </PaginationItem>
       </PaginationContent>
