@@ -29,11 +29,11 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
   const { recommendedItems, isLoading, error } = useSelector(
     (state: RootState) => state.recommendedProducts,
   )
-// eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (!id || recommendedItems.length > 0) return
     dispatch(loadRecommendedProducts({ id }))
-  }, [id, dispatch])
+  }, [id, dispatch, recommendedItems.length])
 
   const smoothScroll = (offset: number, duration = 1000) => {
     if (!scrollRef.current) return
