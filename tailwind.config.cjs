@@ -9,20 +9,6 @@ module.exports = {
     './src/components/**/*.{ts,tsx}',
   ],
   theme: {
-    extend: {},
-  },
-  plugins: [require('tailwindcss-animate')],
-}
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ['class'],
-  content: [
-    './src/app/**/*.{ts,tsx}',
-    './src/pages/**/*.{ts,tsx}',
-    './src/components/**/*.{ts,tsx}',
-  ],
-  theme: {
     extend: {
       maxWidth: { 'screen-xl': '1440px' },
       colors: {
@@ -68,4 +54,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-}
+};
