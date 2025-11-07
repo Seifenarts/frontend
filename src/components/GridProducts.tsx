@@ -1,26 +1,26 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/redux/store";
-import { useAppDispatch } from "@/redux/hooks";
-import { loadProducts } from "@/redux/features/products/productAction";
-import { setPage } from "@/redux/features/products/productSlice";
-import { ProductCard } from "./ProductCard";
-import { PaginationBlock } from "./PaginationBlock";
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import type { RootState } from '@/redux/store'
+import { useAppDispatch } from '@/redux/hooks'
+import { loadProducts } from '@/redux/features/products/productAction'
+import { setPage } from '@/redux/features/products/productSlice'
+import { ProductCard } from './ProductCard'
+import { PaginationBlock } from './PaginationBlock'
 
 export function GridProducts() {
   const { items, isLoading, error, page, totalPages } = useSelector(
-    (state: RootState) => state.products
-  );
-  const dispatch = useAppDispatch();
+    (state: RootState) => state.products,
+  )
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(loadProducts({ page: page, size: 8 }));
-  }, [page, dispatch]);
+    dispatch(loadProducts({ page: page, size: 8 }))
+  }, [page, dispatch])
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error}</div>
 
   return (
     <div>
@@ -33,11 +33,11 @@ export function GridProducts() {
               title={product.title}
               description={product.shortDescription}
               price={`€${product.price}`}
-              imageUrl={product.imageUrls?.[0] || "/placeholder.png"}
+              imageUrl={product.imageUrls?.[0] || '/placeholder.png'}
             />
           ))
         ) : (
-          <p>Keine Produkte gefunden</p> 
+          <p>Keine Produkte gefunden</p>
         )}
       </div>
 
@@ -49,5 +49,5 @@ export function GridProducts() {
         />
       </div>
     </div>
-  );
+  )
 }

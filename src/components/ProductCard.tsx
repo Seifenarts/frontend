@@ -1,5 +1,5 @@
-"use client";
-
+'use client'
+import Image from 'next/image'
 import {
   Card,
   CardHeader,
@@ -7,36 +7,30 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
-import { Inter } from "next/font/google";
-import Link from "next/link";
+} from '@/components/ui/card'
+import { Inter } from 'next/font/google'
+import Link from 'next/link'
 
 const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+})
 
 interface ProductCardProps {
-  id: number;
-  title: string;
-  description: string;
-  price: string;
-  imageUrl: string;
+  id: number
+  title: string
+  description: string
+  price: string
+  imageUrl: string
 }
 
-export function ProductCard({
-  id,
-  title,
-  description,
-  price,
-  imageUrl,
-}: ProductCardProps) {
+export function ProductCard({ id, title, description, price, imageUrl }: ProductCardProps) {
   return (
     <Link href={`/products/${id}`} className="block">
       <Card className="bg-transparent shadow-none border-none w-full h-full flex flex-col">
         <CardHeader>
-          <img
+          <Image
             src={imageUrl}
             alt={title}
             className="w-full max-w-[350px] h-[350px] shadow-lg object-cover rounded-[15%]"
@@ -59,5 +53,5 @@ export function ProductCard({
         </CardFooter>
       </Card>
     </Link>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-"use client";
-
-import { Lemon, Mali } from "next/font/google";
-import React from "react";
+'use client'
+import Image from 'next/image'
+import { Lemon, Mali } from 'next/font/google'
+import React from 'react'
 
 const lemon = Lemon({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+})
 
 const mali = Mali({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+})
 
 const HeroSection: React.FC = () => {
   return (
@@ -40,13 +40,13 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      <img
+      <Image
         src="/frau1.png"
         alt="frau"
         className="h-[170%] w-auto object-contain mt-8 ml-10 opacity-75 hidden sm:block"
       />
     </div>
-  );
+  )
 }
 
-export default HeroSection;
+export default HeroSection
