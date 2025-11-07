@@ -10,6 +10,7 @@ import { Inter } from 'next/font/google'
 import { Button } from '@/components/ui/button'
 import RecommendedProductsCarousel from '@/components/RecommendedProductsCarousel'
 import { useParams } from 'next/navigation'
+import Image from 'next/image'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -45,10 +46,13 @@ export default function ProductPage() {
           {/* small img gallery section */}
           <div className="max-w-[120px] xl:max-w-[170px] flex-1 flex flex-col gap-4">
             {selectedProduct?.imageUrls?.slice(1, 5).map((img, index) => (
-              <img
+              <Image
                 key={index}
                 src={img}
                 alt="img"
+                width={120}
+                height={120}
+                loading="lazy"
                 className={`rounded-[5%] cursor-pointer ${
                   index === activeIndex ? 'ring-2 ring-[#be9f4b]' : ''
                 }`}
@@ -59,11 +63,13 @@ export default function ProductPage() {
           {/* main img*/}
           <div className="flex-1 max-w-[550px] xl:max-w-[670px] relative">
             {selectedProduct?.imageUrls?.map((img, index) => (
-              <img
+              <Image
                 key={index}
                 src={img}
                 alt="mainImg"
-                className={`rounded-[3%] absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                className={`rounded-[3%] object-cover transition-opacity duration-500 ease-in-out
         ${index === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
               />
             ))}
@@ -71,12 +77,18 @@ export default function ProductPage() {
         </div>
         {/* description and choose products section*/}
         <div className="max-w-[390px] flex-1 flex-col mx-5 mb-8 xl:mx-0">
-          <h3 className={`${inter.className} font-extrabold mb-1 text-3xl xl:mb-2 xl:text-5xl`}>{selectedProduct?.title}</h3>
-          <p className={`${inter.className} text-sm mb-2 xl:mb-4 xl:text-lg`}>{selectedProduct?.shortDescription}</p>
+          <h3 className={`${inter.className} font-extrabold mb-1 text-3xl xl:mb-2 xl:text-5xl`}>
+            {selectedProduct?.title}
+          </h3>
+          <p className={`${inter.className} text-sm mb-2 xl:mb-4 xl:text-lg`}>
+            {selectedProduct?.shortDescription}
+          </p>
 
           <div className="flex gap-2 mb-2 xl:mb-4">
             <p className={`${inter.className} font-bold text-sm xl:text-lg`}>Duft:</p>
-            <p className={`${inter.className} text-sm xl:text-lg`}>zarter Duft frisch geschnittener Rosen</p>
+            <p className={`${inter.className} text-sm xl:text-lg`}>
+              zarter Duft frisch geschnittener Rosen
+            </p>
             <p>{selectedProduct?.aromas}</p>
           </div>
 
@@ -99,7 +111,9 @@ export default function ProductPage() {
                       <span className={`${inter.className} font-bold`}>
                         {selectedProduct?.price ?? '-'} €
                       </span>
-                      <p className={`${inter.className} text-xl xl:text-2x1 font-extrabold`}>{size}</p>
+                      <p className={`${inter.className} text-xl xl:text-2x1 font-extrabold`}>
+                        {size}
+                      </p>
                     </div>
                   )
                 })}
@@ -113,24 +127,34 @@ export default function ProductPage() {
                 JETZT BESTELLEN
               </Button>
               <div className="flex gap-1 justify-center">
-                <img src="/Mastercard.png" alt="mastercard_icon" />
-                <img src="/visa.png" alt="visa_icon" />
-                <img src="/PayPal.png" alt="Paypal_icon" />
+                <Image src="/Mastercard.svg" width={37} height={25} alt="mastercard_icon" />
+                <Image src="/visa.svg" width={37} height={25} alt="visa_icon" />
+                <Image src="/PayPal.svg" width={37} height={25} alt="Paypal_icon" />
               </div>
               <div className="flex gap-4">
-                <img src="/Delivery.png" alt="Delivery_icon" className="w-18 h-12" />
+                <Image
+                  src="/Delivery.svg"
+                  width={52}
+                  height={43}
+                  alt="Delivery_icon"
+                  className="w-18 h-12"
+                />
                 <div className="flex flex-col">
                   <p className={`${inter.className} text-green-600 font-bold text-md xl:text-lg`}>
                     Lieferbar vom 08.07 bis 15.07
                   </p>
-                  <p className={`${inter.className} text-sm xl:text-md`}>Lieferung nach Deutschland</p>
+                  <p className={`${inter.className} text-sm xl:text-md`}>
+                    Lieferung nach Deutschland
+                  </p>
                   <p className={`${inter.className} flex justify-center text-sm xl:text-md `}>or</p>
                 </div>
               </div>
               <div className="ml-8">
                 <div className="flex gap-1">
                   <p className={`${inter.className} text-sm xl:text-md`}>Abholung im</p>
-                  <p className={`${inter.className} text-sm xl:text-md text-blue-400 font-bold`}>Studio</p>
+                  <p className={`${inter.className} text-sm xl:text-md text-blue-400 font-bold`}>
+                    Studio
+                  </p>
                   <p className={`${inter.className} text-sm xl:text-md text-green-600 font-bold`}>
                     ohne Lieferungskosten:
                   </p>
@@ -139,12 +163,16 @@ export default function ProductPage() {
                   Oberer Grifflenberg 83, 42119 Wuppertal
                 </p>
               </div>
-              <div className={`${inter.className} text-md xl:text-lg `}>{selectedProduct.fullDescription}</div>
+              <div className={`${inter.className} text-md xl:text-lg `}>
+                {selectedProduct.fullDescription}
+              </div>
               <div className={`${inter.className}`}>
                 <span className=" text-md xl:text-lg font-bold">Inhaltstoffe: </span>
                 <span>{selectedProduct.composition}</span>
               </div>
-              <p className={`${inter.className} font-light text-md xl:text-lg leading-relaxed mt-2 mx-2`}>
+              <p
+                className={`${inter.className} font-light text-md xl:text-lg leading-relaxed mt-2 mx-2`}
+              >
                 Unser handgemachtes Naturseifenstück wird ausschließlich aus hochwertigen
                 pflanzlichen Ölen und reinen ätherischen Ölen hergestellt.{' '}
               </p>

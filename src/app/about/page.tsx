@@ -1,12 +1,12 @@
 'use client';
-
+import Image from 'next/image'
 import type { JSX } from "react";
 
 export default function Page(): JSX.Element {
   return (
     <>
       <section className="flex flex-col lg:flex-row items-start gap-8 p-8 bg-white">
-        <img src="ana.jpg" alt="Ana" className="w-48 h-64 object-cover shadow-lg rounded-md" />
+        <Image src="ana.jpg" fill alt="Ana" className="w-48 h-64 object-cover shadow-lg rounded-md" />
         <div className="max-w-2xl space-y-4">
           <h1 className="text-3xl font-bold">Willkommen in meiner warmen und kreativen Welt!</h1>
           <p>Mein Name ist Ana, ich komme aus der Republik Moldawien und lebe seit 2019 in Deutschland. Dieser Umzug war nicht nur ein Ortswechsel, sondern auch der Beginn eines neuen Kapitels in meinem Leben.</p>
@@ -21,8 +21,8 @@ export default function Page(): JSX.Element {
       <section className="p-8 bg-gray-50">
         <h2 className="text-2xl font-semibold mb-4">Werkstatt & Prozess</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <img src="workshop1.jpg" alt="Arbeitsprozess" className="rounded shadow-md" />
-          <img src="workshop2.jpg" alt="Arbeitsprozess" className="rounded shadow-md" />
+          <Image src="workshop1.jpg" fill alt="Arbeitsprozess" className="rounded shadow-md" />
+          <Image src="workshop2.jpg" fill alt="Arbeitsprozess" className="rounded shadow-md" />
         </div>
       </section>
 

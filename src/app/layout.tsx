@@ -2,17 +2,10 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { store } from "@/redux/store";
 import { Provider } from "react-redux";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-poppins",
-});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
