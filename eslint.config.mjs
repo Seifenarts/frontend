@@ -10,7 +10,6 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     ignores: [
       'node_modules/**',
@@ -21,7 +20,15 @@ const eslintConfig = [
       'tailwind.config.cjs',
       'next.config.js',
       'next.config.ts',
+      'postcss.config.cjs',
+      'public/**',
+      'dist/**',
     ],
+  },
+
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+
+  {
     rules: {
       '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/no-require-imports': 'off',
