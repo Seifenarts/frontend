@@ -42,6 +42,8 @@ const HeroSection: React.FC = () => {
 
       <Image
         src="/frau1.png"
+        width={350}
+        height={350}
         alt="frau"
         className="h-[170%] w-auto object-contain mt-8 ml-10 opacity-75 hidden sm:block"
       />

@@ -29,10 +29,16 @@ const Footer: FC = () => {
 
         <div className="flex justify-center md:justify-end gap-4">
           <Link href="https://www.instagram.com/annatarlev.de/?hl=en">
-            <Image src="/instagram.png" alt="Instagram" className="w-6 h-6" />
+            <Image
+              src="/instagram.png"
+              width={20}
+              height={20}
+              alt="Instagram"
+              className="w-6 h-6"
+            />
           </Link>
           <Link href="/">
-            <Image src="/facebook.png" alt="Facebook" className="w-6 h-6" />
+            <Image src="/facebook.png" width={20} height={20} alt="Facebook" className="w-6 h-6" />
           </Link>
         </div>
       </div>

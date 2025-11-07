@@ -41,7 +41,13 @@ const Header: FC = () => {
         </nav>
 
         <Link href="/" onClick={handleClick} className="mx-4 sm:mx-0">
-          <Image src="/logo.png" fill alt="Anna's Seifenarts Logo" className="h-24 w-auto" />
+          <Image
+            src="/logo.png"
+            width={350}
+            height={350}
+            alt="Anna's Seifenarts Logo"
+            className="h-24 w-auto"
+          />
         </Link>
         <div className="flex m-4 sm:flex-1 ">
           <nav className="hidden flex-1 sm:flex justify-evenly">

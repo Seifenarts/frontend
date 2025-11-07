@@ -111,6 +111,8 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
             <Link href={`/products/${product.id}`} className="w-full block">
               <Image
                 src={product.imageUrls?.[0]}
+                width={300}
+                height={400}
                 alt={product.title}
                 className="rounded-lg w-full h-44 object-cover mb-2"
               />

@@ -32,6 +32,8 @@ export function ProductCard({ id, title, description, price, imageUrl }: Product
         <CardHeader>
           <Image
             src={imageUrl}
+            width={350}
+            height={350}
             alt={title}
             className="w-full max-w-[350px] h-[350px] shadow-lg object-cover rounded-[15%]"
           />
