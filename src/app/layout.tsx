@@ -25,7 +25,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <Provider store={store}>
           <Header />
-
           <main className="flex-1"> {children}</main>
           <Footer />
         </Provider>

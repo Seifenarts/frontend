@@ -40,11 +40,15 @@ export default function ProductPage() {
   const sizes = ['M', 'L', 'XL', 'XXL']
 
   return (
-    <div className="flex flex-col gap-4 justify-center ml-5">
-      <div className="flex flex-row items-start max-[900px]:flex-col max-[900px]:items-center justify-center mt-10">
-        <div className="max-w-[800px] xl:max-w-[880px] flex flex-1 ">
+    <div className="flex flex-col justify-center min-h-screen">
+      <div className="w-full h-[1px] bg-gray-300"></div>
+      <div className="flex flex-row items-start max-[900px]:flex-col justify-center mt-10 max-[900px]:mx-auto">
+        <div
+          className="max-w-[800px] xl:max-w-[880px] flex flex-1 
+                "
+        >
           {/* small img gallery section */}
-          <div className="lg:max-w-[170px] md:max-w-[130px] flex-1 flex flex-col gap-2">
+          <div className="lg:max-w-[170px] md:max-w-[130px] flex-1 flex flex-col gap-2 ml-4">
             {selectedProduct?.imageUrls?.slice(1, 5).map((img, index) => (
               <Image
                 key={index}
@@ -70,13 +74,13 @@ export default function ProductPage() {
                 fill
                 sizes="(max-width: 768px) 100vw, 600px"
                 className={`rounded-[3%] object-cover transition-opacity duration-500 ease-in-out
-        ${index === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+         ${index === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
               />
             ))}
           </div>
         </div>
         {/* description and choose products section*/}
-        <div className="xl:max-w-[400px] lg:max-w-[300px] md:max-w-[330px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 max-[900px]:max-w-none">
+        <div className="xl:max-w-[400px] lg:max-w-[300px] md:max-w-[330px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 ">
           <h3 className={`${inter.className} font-extrabold mb-1 text-3xl  xl:mb-2 xl:text-5xl`}>
             {selectedProduct?.title}
           </h3>
@@ -109,7 +113,7 @@ export default function ProductPage() {
                     ${isActive ? 'bg-black text-[#be9f4b]' : 'bg-white text-black'}
                   `}
                       >
-                        <span className={`${inter.className} font-bold`}>
+                        <span className={`${inter.className}  font-bold`}>
                           {selectedProduct?.price ?? '-'} €
                         </span>
                         <p className={`${inter.className} text-xl xl:text-2x1 font-extrabold`}>
@@ -119,21 +123,24 @@ export default function ProductPage() {
                     )
                   })}
                 </div>
-                <span className={`${inter.className} ml-auto text-2xl xl:text-3xl font-extrabold`}>
+                <span
+                  className={`${inter.className} max-[900px]:hidden ml-auto text-2xl xl:text-3xl font-extrabold`}
+                >
                   {selectedProduct?.price} €
                 </span>
                 <Button
-                  className={`${inter.className} h-10 xl:h-12 bg-black  text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors`}
+                  className={`${inter.className} max-[900px]:hidden h-10 xl:h-12 bg-black  text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors`}
                 >
                   JETZT BESTELLEN
                 </Button>
-                <div className="flex gap-1 justify-center">
+                <div className="flex gap-1 justify-center max-[900px]:hidden">
                   <Image src="/Mastercard.svg" width={37} height={25} alt="mastercard_icon" />
                   <Image src="/visa.svg" width={37} height={25} alt="visa_icon" />
                   <Image src="/PayPal.svg" width={37} height={25} alt="Paypal_icon" />
                 </div>
               </div>
             </div>
+            <div className="w-1/2 h-[1px] bg-gray-300 mx-auto my-6 max-[900px]:w-[90%]"></div>
 
             {/* Deliver section*/}
             <div className="flex flex-col max-[900px]:flex-row max-[900px]:w-[800px] my-6">
@@ -196,6 +203,9 @@ export default function ProductPage() {
         </div>
       </div>
       <RecommendedProductsCarousel id={Number(id)} />
+      <div className="hidden max-[900px]:flex max-[900px]:sticky max-[900px]:bottom-0 max-[900px]:w-full max-[900px]:h-[100px] max-[900px]:bg-white max-[900px]:border-t-2 max-[900px]:border-gray-200 max-[900px]:shadow-md max-[900px]:items-center max-[900px]:justify-center max-[900px]:z-40">
+        fgvfgfd
+      </div>
     </div>
   )
 }
