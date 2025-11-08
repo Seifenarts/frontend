@@ -40,28 +40,28 @@ export default function ProductPage() {
   const sizes = ['M', 'L', 'XL', 'XXL']
 
   return (
-    <div className="flex flex-col gap-4 justify-center">
-      <div className="flex items-center justify-center ml-12">
-        <div className="max-w-[700px] xl:max-w-[900px] flex flex-1 gap-4">
+    <div className="flex flex-col gap-4 justify-center ml-5">
+      <div className="flex flex-row items-start max-[900px]:flex-col max-[900px]:items-center justify-center mt-10">
+        <div className="max-w-[800px] xl:max-w-[880px] flex flex-1 ">
           {/* small img gallery section */}
-          <div className="max-w-[120px] xl:max-w-[170px] flex-1 flex flex-col gap-4">
+          <div className="lg:max-w-[170px] md:max-w-[130px] flex-1 flex flex-col gap-2">
             {selectedProduct?.imageUrls?.slice(1, 5).map((img, index) => (
               <Image
                 key={index}
                 src={img}
                 alt="img"
-                width={120}
+                width={150}
                 height={120}
                 loading="lazy"
-                className={`rounded-[5%] cursor-pointer ${
-                  index === activeIndex ? 'ring-2 ring-[#be9f4b]' : ''
+                className={`rounded-[5%] cursor-pointer lg:md:w-[150px] md:w-[120px]  ${
+                  index === activeIndex ? 'ring-2 ring-[#312a16]' : ''
                 }`}
                 onClick={() => setActiveIndex(index)}
               />
             ))}
           </div>
           {/* main img*/}
-          <div className="flex-1 max-w-[550px] xl:max-w-[670px] relative">
+          <div className="flex-1 lg:max-w-[670px] md:max-w-[500px] max-[900px]:w-[500px] max-[900px]:h-[665px] relative">
             {selectedProduct?.imageUrls?.map((img, index) => (
               <Image
                 key={index}
@@ -76,8 +76,8 @@ export default function ProductPage() {
           </div>
         </div>
         {/* description and choose products section*/}
-        <div className="max-w-[390px] flex-1 flex-col mx-5 mb-8 xl:mx-0">
-          <h3 className={`${inter.className} font-extrabold mb-1 text-3xl xl:mb-2 xl:text-5xl`}>
+        <div className="xl:max-w-[400px] lg:max-w-[300px] md:max-w-[330px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 max-[900px]:max-w-none">
+          <h3 className={`${inter.className} font-extrabold mb-1 text-3xl  xl:mb-2 xl:text-5xl`}>
             {selectedProduct?.title}
           </h3>
           <p className={`${inter.className} text-sm mb-2 xl:mb-4 xl:text-lg`}>
@@ -89,89 +89,104 @@ export default function ProductPage() {
             <p className={`${inter.className} text-sm xl:text-lg`}>
               zarter Duft frisch geschnittener Rosen
             </p>
-            <p>{selectedProduct?.aromas}</p>
+            <p className={`${inter.className} text-sm xl:text-lg`}>{selectedProduct?.aromas}</p>
           </div>
 
           {/* choose products section*/}
-          <div className="flex flex-col gap-2">
-            <p className="font-bold ">GRÖSSE WÄHLEN</p>
-            <div className="flex flex-col gap-2 xl:gap-3">
-              <div className="flex gap-1 xl:gap-3">
-                {sizes.map((size) => {
-                  const isActive = selectedProduct?.size === size
-                  return (
-                    <div
-                      key={size}
-                      className={`${
-                        inter.className
-                      } w-[70px] h-[60px] xl:w-[90px] xl:h-[75px] border border-gray-500 flex flex-col items-center justify-center rounded-md transition-all duration-200
+          <div className="lg:max-w-[380px] md:max-w-[290px]">
+            <div className="flex flex-col gap-2">
+              <p className="font-bold ">GRÖSSE WÄHLEN</p>
+              <div className="flex flex-col gap-2 xl:gap-3">
+                <div className="flex gap-1 xl:gap-3">
+                  {sizes.map((size) => {
+                    const isActive = selectedProduct?.size === size
+                    return (
+                      <div
+                        key={size}
+                        className={`${
+                          inter.className
+                        } w-[70px] h-[60px] xl:w-[90px] xl:h-[75px] border border-gray-500 flex flex-col items-center justify-center rounded-md transition-all duration-200
                     ${isActive ? 'bg-black text-[#be9f4b]' : 'bg-white text-black'}
                   `}
-                    >
-                      <span className={`${inter.className} font-bold`}>
-                        {selectedProduct?.price ?? '-'} €
-                      </span>
-                      <p className={`${inter.className} text-xl xl:text-2x1 font-extrabold`}>
-                        {size}
-                      </p>
-                    </div>
-                  )
-                })}
-              </div>
-              <span className={`${inter.className} ml-auto text-2xl xl:text-3xl font-extrabold`}>
-                {selectedProduct?.price} €
-              </span>
-              <Button
-                className={`${inter.className} h-10 xl:h-12 bg-black  text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors`}
-              >
-                JETZT BESTELLEN
-              </Button>
-              <div className="flex gap-1 justify-center">
-                <Image src="/Mastercard.svg" width={37} height={25} alt="mastercard_icon" />
-                <Image src="/visa.svg" width={37} height={25} alt="visa_icon" />
-                <Image src="/PayPal.svg" width={37} height={25} alt="Paypal_icon" />
-              </div>
-              <div className="flex gap-4">
-                <Image
-                  src="/Delivery.svg"
-                  width={52}
-                  height={43}
-                  alt="Delivery_icon"
-                  className="w-18 h-12"
-                />
-                <div className="flex flex-col">
-                  <p className={`${inter.className} text-green-600 font-bold text-md xl:text-lg`}>
-                    Lieferbar vom 08.07 bis 15.07
-                  </p>
-                  <p className={`${inter.className} text-sm xl:text-md`}>
-                    Lieferung nach Deutschland
-                  </p>
-                  <p className={`${inter.className} flex justify-center text-sm xl:text-md `}>or</p>
+                      >
+                        <span className={`${inter.className} font-bold`}>
+                          {selectedProduct?.price ?? '-'} €
+                        </span>
+                        <p className={`${inter.className} text-xl xl:text-2x1 font-extrabold`}>
+                          {size}
+                        </p>
+                      </div>
+                    )
+                  })}
+                </div>
+                <span className={`${inter.className} ml-auto text-2xl xl:text-3xl font-extrabold`}>
+                  {selectedProduct?.price} €
+                </span>
+                <Button
+                  className={`${inter.className} h-10 xl:h-12 bg-black  text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors`}
+                >
+                  JETZT BESTELLEN
+                </Button>
+                <div className="flex gap-1 justify-center">
+                  <Image src="/Mastercard.svg" width={37} height={25} alt="mastercard_icon" />
+                  <Image src="/visa.svg" width={37} height={25} alt="visa_icon" />
+                  <Image src="/PayPal.svg" width={37} height={25} alt="Paypal_icon" />
                 </div>
               </div>
+            </div>
+
+            {/* Deliver section*/}
+            <div className="flex flex-col max-[900px]:flex-row max-[900px]:w-[800px] my-6">
+              <div className="flex gap-2">
+                <div className="flex gap-4">
+                  <Image
+                    src="/Delivery.svg"
+                    width={52}
+                    height={43}
+                    alt="Delivery_icon"
+                    className="w-18 h-12"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <p className={`${inter.className} text-green-600 font-bold text-sm xl:text-lg`}>
+                    Lieferbar vom 08.07 bis 15.07
+                  </p>
+                  <p className={`${inter.className} text-sm xl:text-lg`}>
+                    Lieferung nach Deutschland
+                  </p>
+                </div>
+              </div>
+              <p className={`${inter.className} flex justify-center text-sm xl:text-base `}>or</p>
               <div className="ml-8">
                 <div className="flex gap-1">
-                  <p className={`${inter.className} text-sm xl:text-md`}>Abholung im</p>
-                  <p className={`${inter.className} text-sm xl:text-md text-blue-400 font-bold`}>
+                  <p className={`${inter.className} text-sm xl:text-base`}>Abholung im</p>
+                  <p className={`${inter.className} text-sm xl:text-base text-blue-400 font-bold`}>
                     Studio
                   </p>
-                  <p className={`${inter.className} text-sm xl:text-md text-green-600 font-bold`}>
+                  <p className={`${inter.className} text-sm xl:text-base text-green-600 font-bold`}>
                     ohne Lieferungskosten:
                   </p>
                 </div>
-                <p className={`${inter.className} text-sm xl:text-md font-bold`}>
+                <p
+                  className={`${inter.className} text-sm xl:text-base 
+              font-bold`}
+                >
                   Oberer Grifflenberg 83, 42119 Wuppertal
                 </p>
               </div>
-              <div className={`${inter.className} text-md xl:text-lg `}>
+            </div>
+
+            {/* Description*/}
+            <div className="max-[900px]:w-[700px]">
+              <div className={`${inter.className} text-sm xl:text-lg `}>
                 {selectedProduct.fullDescription}
               </div>
-              <div className={`${inter.className}`}>
-                <span className=" text-md xl:text-lg font-bold">Inhaltstoffe: </span>
-                <span>{selectedProduct.composition}</span>
+              <div className={`${inter.className} mt-3 `}>
+                <span className=" text-sm xl:text-lg font-bold">Inhaltstoffe: </span>
+                <span className=" text-sm xl:text-lg ">{selectedProduct.composition}</span>
               </div>
               <p
-                className={`${inter.className} font-light text-md xl:text-lg leading-relaxed mt-2 mx-2`}
+                className={`${inter.className} text-gray-500 font-light text-sm xl:text-lg leading-relaxed mt-3`}
               >
                 Unser handgemachtes Naturseifenstück wird ausschließlich aus hochwertigen
                 pflanzlichen Ölen und reinen ätherischen Ölen hergestellt.{' '}
