@@ -43,12 +43,9 @@ export default function ProductPage() {
     <div className="flex flex-col justify-center min-h-screen">
       <div className="w-full h-[1px] bg-gray-300"></div>
       <div className="flex flex-row items-start max-[900px]:flex-col justify-center mt-10 max-[900px]:mx-auto">
-        <div
-          className="max-w-[800px] xl:max-w-[880px] flex flex-1 
-                "
-        >
+        <div className="max-w-[800px] xl:max-w-[880px] flex flex-1 ">
           {/* small img gallery section */}
-          <div className="lg:max-w-[170px] md:max-w-[130px] flex-1 flex flex-col gap-2 ml-4">
+          <div className="max-w-[130px] lg:max-w-[170px] flex-1 flex flex-col gap-2 ml-4">
             {selectedProduct?.imageUrls?.slice(1, 5).map((img, index) => (
               <Image
                 key={index}
@@ -57,7 +54,7 @@ export default function ProductPage() {
                 width={150}
                 height={120}
                 loading="lazy"
-                className={`rounded-[5%] cursor-pointer lg:md:w-[150px] md:w-[120px]  ${
+                className={`rounded-[5%] cursor-pointer w-[120px] lg:w-[150px] ${
                   index === activeIndex ? 'ring-2 ring-[#312a16]' : ''
                 }`}
                 onClick={() => setActiveIndex(index)}
@@ -80,7 +77,7 @@ export default function ProductPage() {
           </div>
         </div>
         {/* description and choose products section*/}
-        <div className="xl:max-w-[400px] lg:max-w-[300px] md:max-w-[330px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 ">
+        <div className="xl:max-w-[400px] lg:max-w-[300px] md:max-w-[330px] sm:max-w-[330px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 ">
           <h3 className={`${inter.className} font-extrabold mb-1 text-3xl  xl:mb-2 xl:text-5xl`}>
             {selectedProduct?.title}
           </h3>
@@ -97,7 +94,7 @@ export default function ProductPage() {
           </div>
 
           {/* choose products section*/}
-          <div className="lg:max-w-[380px] md:max-w-[290px]">
+          <div className="max-w-[290px] lg:max-w-[380px] ">
             <div className="flex flex-col gap-2">
               <p className="font-bold ">GRÖSSE WÄHLEN</p>
               <div className="flex flex-col gap-2 xl:gap-3">
@@ -184,7 +181,7 @@ export default function ProductPage() {
             </div>
 
             {/* Description*/}
-            <div className="max-[900px]:w-[700px]">
+            <div className="max-[900px]:w-[636px] mx-auto ">
               <div className={`${inter.className} text-sm xl:text-lg `}>
                 {selectedProduct.fullDescription}
               </div>
@@ -192,19 +189,34 @@ export default function ProductPage() {
                 <span className=" text-sm xl:text-lg font-bold">Inhaltstoffe: </span>
                 <span className=" text-sm xl:text-lg ">{selectedProduct.composition}</span>
               </div>
-              <p
-                className={`${inter.className} text-gray-500 font-light text-sm xl:text-lg leading-relaxed mt-3`}
+              <span
+                className={`${inter.className} text-gray-500 font-light text-[13px] xl:text-lg leading-relaxed mt-3`}
               >
                 Unser handgemachtes Naturseifenstück wird ausschließlich aus hochwertigen
-                pflanzlichen Ölen und reinen ätherischen Ölen hergestellt.{' '}
-              </p>
+                pflanzlichen Ölen und reinen ätherischen Ölen hergestellt.
+              </span>
             </div>
           </div>
         </div>
       </div>
       <RecommendedProductsCarousel id={Number(id)} />
-      <div className="hidden max-[900px]:flex max-[900px]:sticky max-[900px]:bottom-0 max-[900px]:w-full max-[900px]:h-[100px] max-[900px]:bg-white max-[900px]:border-t-2 max-[900px]:border-gray-200 max-[900px]:shadow-md max-[900px]:items-center max-[900px]:justify-center max-[900px]:z-40">
-        fgvfgfd
+      {/*MobileBuyPanel*/}
+      <div className="hidden max-[900px]:flex max-[900px]:sticky max-[900px]:bottom-0 max-[900px]:w-full max-[900px]:h-[100px] max-[900px]:bg-white max-[900px]:border-t-2 max-[900px]:border-gray-200 max-[900px]:shadow-md max-[900px]:items-center max-[900px]:justify-start max-[900px]:z-40">
+        <div className="flex flex-col gap-1 justify-center ml-5">
+          <Image src="/Mastercard.svg" width={50} height={30} alt="mastercard_icon" />
+          <Image src="/visa.svg" width={50} height={30} alt="visa_icon" />
+          <Image src="/PayPal.svg" width={50} height={30} alt="Paypal_icon" />
+        </div>
+        <div className={`${inter.className}  font-bold flex gap-4 items-end mx-10`}>
+          <span className={`${inter.className}  text-5xl`}>{selectedProduct?.size}</span>
+          <span className={`${inter.className}  text-4xl`}>{selectedProduct?.price ?? '-'}€</span>
+        </div>
+
+        <Button
+          className={`${inter.className} h-[100px] w-full text-3xl flex justify-center bg-black  text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors`}
+        >
+          JETZT BESTELLEN
+        </Button>
       </div>
     </div>
   )
