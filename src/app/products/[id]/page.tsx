@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import RecommendedProductsCarousel from '@/components/RecommendedProductsCarousel'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
+import MobileImageSlider from '@/components/MobileImageSlider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -42,8 +43,8 @@ export default function ProductPage() {
   return (
     <div className="flex flex-col justify-center min-h-screen">
       <div className="w-full h-[1px] bg-gray-300"></div>
-      <div className="flex flex-row items-start max-[900px]:flex-col justify-center mt-10 max-[900px]:mx-auto">
-        <div className="max-w-[800px] xl:max-w-[880px] flex flex-1 ">
+      <div className="flex flex-row items-start max-[900px]:flex-col justify-center mt-10 max-[900px]:mx-auto ">
+        <div className="hidden sm:flex max-w-[800px] xl:max-w-[880px] flex flex-1">
           {/* small img gallery section */}
           <div className="max-w-[130px] lg:max-w-[170px] flex-1 flex flex-col gap-2 ml-4">
             {selectedProduct?.imageUrls?.slice(1, 5).map((img, index) => (
@@ -76,6 +77,7 @@ export default function ProductPage() {
             ))}
           </div>
         </div>
+        <MobileImageSlider images={selectedProduct.imageUrls || []} />
         {/* description and choose products section*/}
         <div className="xl:max-w-[400px] lg:max-w-[300px] md:max-w-[330px] sm:max-w-[330px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 ">
           <h3 className={`${inter.className} font-extrabold mb-1 text-3xl  xl:mb-2 xl:text-5xl`}>
@@ -140,7 +142,7 @@ export default function ProductPage() {
             <div className="w-1/2 h-[1px] bg-gray-300 mx-auto my-6 max-[900px]:w-[90%]"></div>
 
             {/* Deliver section*/}
-            <div className="flex flex-col max-[900px]:flex-row max-[900px]:w-[800px] my-6">
+            <div className="flex flex-col max-[900px]:flex-row max-[900px]:w-[800px] max-[640px]:flex-col my-6">
               <div className="flex gap-2">
                 <div className="flex gap-4">
                   <Image
@@ -160,8 +162,12 @@ export default function ProductPage() {
                   </p>
                 </div>
               </div>
-              <p className={`${inter.className} flex justify-center text-sm xl:text-base `}>or</p>
-              <div className="ml-8">
+              <p
+                className={`${inter.className} flex justify-center text-sm  max-[640px]:justify-start max-[640px]:ml-36 xl:text-base `}
+              >
+                or
+              </p>
+              <div className="ml-8 max-[640px]:ml-0">
                 <div className="flex gap-1">
                   <p className={`${inter.className} text-sm xl:text-base`}>Abholung im</p>
                   <p className={`${inter.className} text-sm xl:text-base text-blue-400 font-bold`}>
@@ -181,7 +187,7 @@ export default function ProductPage() {
             </div>
 
             {/* Description*/}
-            <div className="max-[900px]:w-[636px] mx-auto ">
+            <div className="max-[900px]:w-[636px] max-[640px]:w-[500px] max-[550px]:w-[450px] mx-auto ">
               <div className={`${inter.className} text-sm xl:text-lg `}>
                 {selectedProduct.fullDescription}
               </div>
