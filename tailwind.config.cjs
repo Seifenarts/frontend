@@ -10,6 +10,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: { 900: '900px' },
       maxWidth: { 'screen-xl': '1440px' },
       colors: {
         border: 'hsl(var(--border))',
