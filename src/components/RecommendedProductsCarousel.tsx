@@ -83,8 +83,8 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
   if (error) return <div className="text-center py-8 text-red-500">Error: {error}</div>
 
   return (
-    <div className="relative w-full mb-10">
-      <h1 className={`${inter.className} text-lg font-bold ml-80 mb-2`}>Passende Alternativen</h1>
+    <div className="relative lg:mt-8 w-full mb-10">
+      <h1 className={`${inter.className} text-lg font-bold ml-60 mb-2`}>Passende Alternativen</h1>
 
       <button
         className={`absolute top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition-all duration-500 ease-in-out`}

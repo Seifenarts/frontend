@@ -41,7 +41,7 @@ export default function ProductPage() {
   const sizes = ['M', 'L', 'XL', 'XXL']
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center min-h-screen ">
       <div className="w-full h-[1px] bg-gray-300"></div>
       <div className="flex flex-row items-start max-[900px]:flex-col justify-center mt-10 max-[900px]:mx-auto ">
         <div className="hidden sm:flex max-w-[800px] xl:max-w-[880px] flex flex-1">
@@ -79,7 +79,7 @@ export default function ProductPage() {
         </div>
         <MobileImageSlider images={selectedProduct.imageUrls || []} />
         {/* description and choose products section*/}
-        <div className="xl:max-w-[400px] mdx:max-w-[300px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 ">
+        <div className="xl:max-w-[400px] lg:max-w-[300px] flex-1 flex-col mx-5 mb-8 max-[900px]:mt-6 xl:mx-0 ">
           <div>
             <h3 className={`${inter.className} font-extrabold mb-1 text-3xl  xl:mb-2 xl:text-5xl`}>
               {selectedProduct?.title}
@@ -97,7 +97,7 @@ export default function ProductPage() {
             </div>
 
             {/* choose products section*/}
-            <div className="lg:max-w-[380px]">
+            <div className="lg:max-w-[380px] ">
               <div className="flex flex-col gap-2">
                 <p className="font-bold ">GRÖSSE WÄHLEN</p>
                 <div className="flex flex-col gap-2 xl:gap-3">
@@ -143,7 +143,7 @@ export default function ProductPage() {
               <div className="w-1/2 h-[1px] bg-gray-300 mx-auto my-6 max-[900px]:w-[90%]"></div>
 
               {/* Deliver section*/}
-              <div className="flex flex-col mdx:flex-col sm:flex-row max-[900px]:w-full mdx:gap-1 sm:gap-5 my-6 px-4 ">
+              <div className="flex flex-col max-[900px]:flex-row max-[900px]:w-full  max-[900px]:gap-5 my-6 px-4 ">
                 <div className="flex gap-2">
                   <div className="flex gap-4">
                     <Image
@@ -166,26 +166,26 @@ export default function ProductPage() {
                   </div>
                 </div>
                 <p
-                  className={`${inter.className} flex text-sm max-[640px]:justify-start xl:text-base max-[640px]:ml-36 mdx:ml-36`}
+                  className={`${inter.className} flex justify-center items-center text-sm max-[640px]:justify-start max-[640px]:ml-36 xl:text-base `}
                 >
                   or
                 </p>
-                <div className="flex flex-col ml-8 md:ml-0 max-[900px]:ml-2 max-[640px]:ml-0">
-                  <div className=" flex gap-1">
-                    <p className={`${inter.className} text-xs xl:text-base`}>Abholung im</p>
+                <div className="ml-8 md:ml-0 max-[900px]:ml-2 max-[640px]:ml-0">
+                  <div className="flex gap-1">
+                    <p className={`${inter.className} text-sm xl:text-base`}>Abholung im</p>
                     <p
-                      className={`${inter.className} text-xs xl:text-base text-blue-400 font-bold`}
+                      className={`${inter.className} text-sm xl:text-base text-blue-400 font-bold`}
                     >
                       Studio
                     </p>
                     <p
-                      className={`${inter.className} text-xs xl:text-base text-green-600 font-bold`}
+                      className={`${inter.className} text-sm xl:text-base text-green-600 font-bold`}
                     >
                       ohne Lieferungskosten:
                     </p>
                   </div>
                   <p
-                    className={`${inter.className} text-xs xl:text-base 
+                    className={`${inter.className} text-sm xl:text-base 
               font-bold`}
                   >
                     Oberer Grifflenberg 83, 42119 Wuppertal
@@ -213,55 +213,20 @@ export default function ProductPage() {
         </div>
       </div>
       <RecommendedProductsCarousel id={Number(id)} />
-      {/* MobileBuyPanel */}
-      <div
-        className="
-    hidden
-    max-[900px]:flex
-    max-[900px]:sticky
-    max-[900px]:bottom-0
-    max-[900px]:w-full
-    max-[900px]:h-[70px]
-    max-[900px]:bg-white
-    max-[900px]:border-t max-[900px]:border-gray-300
-    max-[900px]:shadow-[0_-2px_6px_rgba(0,0,0,0.1)]
-    max-[900px]:items-center
-    max-[900px]:justify-between
-    max-[900px]:pl-4
-    max-[900px]:z-50
-  "
-      >
-        {/* Icons */}
-        <div className="flex flex-col gap-1 justify-center">
-          <Image src="/Mastercard.svg" width={25} height={15} alt="mastercard_icon" />
-          <Image src="/visa.svg" width={25} height={15} alt="visa_icon" />
-          <Image src="/PayPal.svg" width={25} height={15} alt="paypal_icon" />
+      {/*MobileBuyPanel*/}
+      <div className="hidden max-[900px]:flex max-[900px]:sticky max-[900px]:bottom-0 max-[900px]:w-full max-[900px]:h-[clamp(70px,10vw,100px)] max-[900px]:bg-white max-[900px]:border-t-2 max-[900px]:border-gray-200 max-[900px]:shadow-md max-[900px]:items-center max-[900px]:justify-start max-[900px]:z-40">
+        <div className="flex flex-col gap-1 justify-center ml-5">
+          <Image src="/Mastercard.svg" width={50} height={30} alt="mastercard_icon" />
+          <Image src="/visa.svg" width={50} height={30} alt="visa_icon" />
+          <Image src="/PayPal.svg" width={50} height={30} alt="Paypal_icon" />
+        </div>
+        <div className={`${inter.className}  font-bold flex gap-4 items-end mx-10`}>
+          <span className={`${inter.className}  text-5xl`}>{selectedProduct?.size}</span>
+          <span className={`${inter.className}  text-4xl`}>{selectedProduct?.price ?? '-'}€</span>
         </div>
 
-        {/* Size + price */}
-        <div className={`${inter.className} font-bold flex flex-col items-center mx-4`}>
-          <span className="text-3xl leading-none">{selectedProduct?.size}</span>
-          <span className="text-2xl leading-none">{selectedProduct?.price ?? '-'}€</span>
-        </div>
-
-        {/* Button takes entire right side */}
         <Button
-          className={`
-      ${inter.className}
-      flex-1
-      h-full
-      text-xl
-      ml-4
-      flex
-      items-center
-      justify-center
-      bg-black
-      text-[#be9f4b]
-      font-bold
-      hover:bg-[#be9f4b]
-      hover:text-black
-      transition-colors
-    `}
+          className={`${inter.className} h-full w-full text-3xl flex justify-center bg-black  text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors`}
         >
           JETZT BESTELLEN
         </Button>

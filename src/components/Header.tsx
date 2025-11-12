@@ -86,7 +86,7 @@ const Header: FC = () => {
           </div>
           <Dialog>
             <DialogTrigger
-              className="sm:hidden  rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFD5D4] absolute right-0"
+              className="sm:hidden mr-4 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFD5D4] absolute right-0"
               aria-label="Open menu"
             >
               <svg
