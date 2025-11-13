@@ -114,7 +114,7 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
                 width={300}
                 height={400}
                 alt={product.title}
-                className="rounded-lg w-full h-44 object-cover mb-2"
+                className="rounded-lg w-full h-[clamp(150px,25vw,180px)] object-cover mb-2"
               />
             </Link>
             <div className="flex w-full justify-between">
