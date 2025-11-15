@@ -50,7 +50,7 @@ export function ProductCard({ id, title, description, price, imageUrl }: Product
             {description}
           </CardDescription>
         </CardContent>
-        <CardFooter className="flex  text-green-500">
+        <CardFooter className="flex text-sm text-green-500">
           <p>Verfügbar – bis zu 5 Werktage Lieferzeit</p>
         </CardFooter>
       </Card>

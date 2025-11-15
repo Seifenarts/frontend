@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { Inter } from 'next/font/google'
 import { useSelector } from 'react-redux'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useSwipeable } from 'react-swipeable'
@@ -14,12 +13,6 @@ import Image from 'next/image'
 interface RecommendedProductsCarouselProps {
   id: number
 }
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-})
 
 export default function RecommendedProductsCarousel({ id }: RecommendedProductsCarouselProps) {
   const dispatch = useAppDispatch()
@@ -84,7 +77,7 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
 
   return (
     <div className="relative lg:mt-8 w-full mb-10">
-      <h1 className={`${inter.className} text-lg font-bold ml-60 mb-2`}>Passende Alternativen</h1>
+      <h1 className="text-lg font-bold ml-60 mb-2`">Passende Alternativen</h1>
 
       <button
         className={`absolute top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition-all duration-500 ease-in-out`}
@@ -118,10 +111,8 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
               />
             </Link>
             <div className="flex w-full justify-between">
-              <div className={`${inter.className} font-normal text-xs ml-3`}>{product.title}</div>
-              <div className={`${inter.className} font-normal text-xs mr-3`}>
-                ab {product.price}€
-              </div>
+              <div className="font-normal text-xs ml-3">{product.title}</div>
+              <div className="font-normal text-xs mr-3">ab {product.price}€</div>
             </div>
           </div>
         ))}

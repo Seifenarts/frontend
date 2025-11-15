@@ -1,27 +1,23 @@
 'use client'
 
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { store } from '@/redux/store'
 import { Provider } from 'react-redux'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
 })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} mx-auto max-w-[1440px] antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col `}
+        className={`${inter.className} mx-auto max-w-[1440px] antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col `}
       >
         <Provider store={store}>
           <Header />
