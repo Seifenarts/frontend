@@ -26,9 +26,9 @@ export default function ProductGallery({
             height={120}
             loading="lazy"
             className={`rounded-[5%] cursor-pointer w-[120px] lg:w-[150px] ${
-              index === activeIndex ? 'ring-2 ring-[#312a16]' : ''
+              index + 1 === activeIndex ? 'ring-2 ring-[#312a16]' : ''
             }`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => setActiveIndex(index + 1)}
           />
         ))}
       </div>
