@@ -66,7 +66,8 @@ const Header: FC = () => {
               <Link href="/cart">
                 <Image
                   src="/basket_icon.png"
-                  fill
+                  width={350}
+                  height={350}
                   alt="basket_icon"
                   className="w-6 md:w-7 lg:w-7 "
                 />
@@ -77,7 +78,8 @@ const Header: FC = () => {
               <Link href="/languages">
                 <Image
                   src="/languages_icon.png"
-                  fill
+                  width={350}
+                  height={350}
                   alt="languages_icon"
                   className="w-6 md:w-7 lg:w-7"
                 />
