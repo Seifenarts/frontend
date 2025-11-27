@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${inter.className} mx-auto max-w-[1440px] antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col `}
+        className={`${inter.className} mx-auto antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col `}
       >
         <Provider store={store}>
           <Header />

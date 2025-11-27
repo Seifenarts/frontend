@@ -17,18 +17,22 @@ interface RecommendedProductsCarouselProps {
 export default function RecommendedProductsCarousel({ id }: RecommendedProductsCarouselProps) {
   const dispatch = useAppDispatch()
   const scrollRef = useRef<HTMLDivElement>(null)
+
   const [isShifted, setIsShifted] = useState(false)
+  const [isAtEnd, setIsAtEnd] = useState(false)
 
   const { recommendedItems, isLoading, error } = useSelector(
     (state: RootState) => state.recommendedProducts,
   )
 
+  // Load recommended products
   useEffect(() => {
     if (!id || recommendedItems.length > 0) return
     dispatch(loadRecommendedProducts({ id }))
   }, [id, dispatch, recommendedItems.length])
 
-  const smoothScroll = (offset: number, duration = 1000) => {
+  // Smooth scroll movement
+  const smoothScroll = (offset: number, duration = 900) => {
     if (!scrollRef.current) return
     const start = scrollRef.current.scrollLeft
     const end = start + offset
@@ -48,6 +52,7 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
     requestAnimationFrame(animate)
   }
 
+  // Swipe support
   const handlers = useSwipeable({
     onSwipedLeft: () => smoothScroll(300),
     onSwipedRight: () => smoothScroll(-300),
@@ -55,46 +60,55 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
     trackMouse: true,
   })
 
+  // Fade + button visibility logic
   useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+
     const handleScroll = () => {
-      if (!scrollRef.current) return
-      setIsShifted(scrollRef.current.scrollLeft > 0)
+      setIsShifted(el.scrollLeft > 0)
+      setIsAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 5)
     }
 
-    const scrollEl = scrollRef.current
-    if (scrollEl) {
-      scrollEl.addEventListener('scroll', handleScroll)
-      handleScroll()
-    }
+    el.addEventListener('scroll', handleScroll)
+    handleScroll()
 
-    return () => {
-      if (scrollEl) scrollEl.removeEventListener('scroll', handleScroll)
-    }
+    return () => el.removeEventListener('scroll', handleScroll)
   }, [])
 
   if (isLoading) return <div className="text-center py-8">Loading...</div>
   if (error) return <div className="text-center py-8 text-red-500">Error: {error}</div>
 
   return (
-    <div className="relative lg:mt-8 w-full mb-10">
-      <h1 className="text-lg font-bold ml-60 mb-2`">Passende Alternativen</h1>
+    <div className="relative max-w-[1500px] w-full mx-auto lg:mt-8 mb-10 overflow-hidden">
+      {/* Заголовок */}
+      <h1 className="flex justify-end xl:justify-center mr-20 lx:mr-0 text-lg font-bold mb-2">
+        Passende Alternativen
+      </h1>
 
-      <button
-        className={`absolute top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition-all duration-500 ease-in-out`}
-        style={{
-          left: isShifted ? '2rem' : '-4rem',
-          opacity: isShifted ? 1 : 0,
-        }}
-        onClick={() => smoothScroll(-250, 1000)}
-        disabled={!isShifted}
-      >
-        <ChevronLeft className="w-7 h-7 text-gray-700" />
-      </button>
+      {/* Левый Fade + Hard Cut (закрывает весь левый экран, никаких просветов) */}
+      {isShifted && (
+        <div
+          className="pointer-events-none absolute top-0 bottom-0 z-30"
+          style={{
+            left: 0,
+            width: '600px',
+            backgroundImage:
+              'linear-gradient(to right, #F9FCFD 0px, #F9FCFD 50px md:150px, rgba(247,249,250,0) 200px, transparent 100%)',
+          }}
+        />
+      )}
 
+      {/* Правый Fade */}
+      {!isAtEnd && (
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#f7f9fa] to-transparent z-30" />
+      )}
+
+      {/* Scrollable Container */}
       <div
         {...handlers}
         ref={scrollRef}
-        className="flex overflow-x-auto no-scrollbar pl-72 scroll-container"
+        className="flex overflow-x-auto lg:pl-[600px] no-scrollbar relative z-10"
       >
         {recommendedItems.map((product) => (
           <div
@@ -111,16 +125,30 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
               />
             </Link>
             <div className="flex w-full justify-between">
-              <div className="font-normal text-xs ml-3">{product.title}</div>
-              <div className="font-normal text-xs mr-3">ab {product.price}€</div>
+              <span className="font-normal text-xs ml-3">{product.title}</span>
+              <span className="font-normal text-xs mr-3">ab {product.price}€</span>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Левая кнопка */}
       <button
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
-        onClick={() => smoothScroll(250, 1000)}
+        className="absolute top-1/2 -translate-y-1/2 z-40 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition-all duration-500 ease-in-out"
+        style={{
+          left: isShifted ? 'max(2vw, 1rem)' : '-5rem',
+          opacity: isShifted ? 1 : 0,
+        }}
+        onClick={() => smoothScroll(-250)}
+        disabled={!isShifted}
+      >
+        <ChevronLeft className="w-7 h-7 text-gray-700" />
+      </button>
+
+      {/* Правая кнопка */}
+      <button
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-40 bg-white/90 p-3 rounded-full shadow-lg hover:bg-white active:scale-95 transition"
+        onClick={() => smoothScroll(250)}
       >
         <ChevronRight className="w-7 h-7 text-gray-700" />
       </button>
