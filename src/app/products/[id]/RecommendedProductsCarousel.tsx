@@ -94,7 +94,7 @@ export default function RecommendedProductsCarousel({ id }: RecommendedProductsC
             left: 0,
             width: '600px',
             backgroundImage:
-              'linear-gradient(to right, #F9FCFD 0px, #F9FCFD 50px md:150px, rgba(247,249,250,0) 200px, transparent 100%)',
+              'linear-gradient(to right, #F9FCFD 0px, #F9FCFD 50px, rgba(247,249,250,0) 200px, transparent 100%)',
           }}
         />
       )}
