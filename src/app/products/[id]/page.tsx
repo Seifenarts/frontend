@@ -8,14 +8,15 @@ import { useEffect, useState } from 'react'
 import React from 'react'
 import { useParams } from 'next/navigation'
 
-import ProductGallery from './ProductGallery'
-import ProductInfo from './ProductInfo'
-import ProductSizeSelector from './ProductSizeSelector'
-import ProductDeliveryInfo from './ProductDeliveryInfo'
-import ProductDescription from './ProductDescription'
-import MobileBuyPanel from './MobileBuyPanel'
-import RecommendedProductsCarousel from './RecommendedProductsCarousel'
-import MobileImageSlider from './MobileImageSlider'
+import ProductGallery from './productGallery'
+import ProductInfo from './productInfo'
+import ProductSizeSelector from './productSizeSelector'
+import ProductDeliveryInfo from './productDeliveryInfo'
+import ProductDescription from './productDescription'
+import MobileBuyPanel from './mobileBuyPanel'
+import RecommendedProductsCarousel from './recommendedProductsCarousel'
+import MobileImageSlider from './mobileImageSlider'
+import Loader from '@/components/ui/loader'
 
 export default function ProductPage() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -32,7 +33,7 @@ export default function ProductPage() {
     }
   }, [id, dispatch])
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Loader />
   if (error) return <div>Error: {error}</div>
   if (!selectedProduct) return <div>No product found</div>
 

@@ -6,8 +6,9 @@ import type { RootState } from '@/redux/store'
 import { useAppDispatch } from '@/redux/hooks'
 import { loadProducts } from '@/redux/features/products/productAction'
 import { setPage } from '@/redux/features/products/productSlice'
-import { ProductCard } from './ProductCard'
-import { PaginationBlock } from './PaginationBlock'
+import { ProductCard } from './productCard'
+import { PaginationBlock } from './paginationBlock'
+import Loader from './ui/loader'
 
 export function GridProducts() {
   const { items, isLoading, error, page, totalPages } = useSelector(
@@ -16,16 +17,25 @@ export function GridProducts() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(loadProducts({ page: page, size: 8 }))
+    dispatch(loadProducts({ page, size: 8 }))
   }, [page, dispatch])
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
+  if (isLoading) {
+    return (
+      <div className="flex justify-center mt-10">
+        <Loader />
+      </div>
+    )
+  }
+
+  if (error) {
+    return <div className="flex justify-center mt-10 text-red-600">Error: {error}</div>
+  }
 
   return (
     <div>
       <div className="mx-auto max-w-[1500px] grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] place-items-center gap-4">
-        {items?.length ? (
+        {items.length > 0 ? (
           items.map((product) => (
             <ProductCard
               key={product.id}

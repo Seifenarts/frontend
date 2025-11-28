@@ -83,3 +83,31 @@
   scroll-padding-left: 10px;
   scroll-padding-right: 10px;
 }
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+/* Register animations as utility classes */
+.animate-spin-slow {
+  animation: spin-slow 2.8s linear infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 1.8s ease-in-out infinite;
+}

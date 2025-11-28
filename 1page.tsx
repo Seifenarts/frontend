@@ -8,10 +8,10 @@ import { useEffect, useState } from 'react'
 import React from 'react'
 import { Inter } from 'next/font/google'
 import { Button } from '@/components/ui/button'
-import RecommendedProductsCarousel from '@/app/products/[id]/RecommendedProductsCarousel'
+import RecommendedProductsCarousel from '@/app/products/[id]/recommendedProductsCarousel'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
-import MobileImageSlider from '@/app/products/[id]/MobileImageSlider'
+import MobileImageSlider from '@/app/products/[id]/mobileImageSlider'
 
 const inter = Inter({
   subsets: ['latin'],

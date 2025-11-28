@@ -35,7 +35,7 @@ export interface ProductState {
 const initialState: ProductState = {
   items: [],
   recommendedItems: [],
-  isLoading: false,
+  isLoading: true,
   error: null,
   page: 0,
   totalPages: 0,
