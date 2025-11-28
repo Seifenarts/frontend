@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from '@/components/ui/card'
+} from '@/components/custom-ui/card'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 

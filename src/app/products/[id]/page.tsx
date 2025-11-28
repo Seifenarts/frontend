@@ -16,7 +16,7 @@ import ProductDescription from './productDescription'
 import MobileBuyPanel from './mobileBuyPanel'
 import RecommendedProductsCarousel from './recommendedProductsCarousel'
 import MobileImageSlider from './mobileImageSlider'
-import Loader from '@/components/ui/loader'
+import Loader from '@/components/custom-ui/loader'
 
 export default function ProductPage() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -39,7 +39,6 @@ export default function ProductPage() {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="w-full h-[1px] bg-gray-300"></div>
       <div className="flex flex-row items-start max-[900px]:flex-col justify-center mt-10 max-[900px]:mx-auto ">
         <ProductGallery
           images={selectedProduct.imageUrls}

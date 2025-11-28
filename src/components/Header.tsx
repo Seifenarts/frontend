@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { Poppins } from 'next/font/google'
-import { Dialog, DialogTrigger, DialogContent, DialogClose } from '@/components/ui/dialog'
+import { Dialog, DialogTrigger, DialogContent, DialogClose } from '@/components/custom-ui/dialog'
 import { useAppDispatch } from '@/redux/hooks'
 import { loadProducts } from '@/redux/features/products/productAction'
 
@@ -145,6 +145,7 @@ const Header: FC = () => {
           </Dialog>
         </div>
       </div>
+      <div className="w-full h-[1px] bg-gray-300"></div>
     </header>
   )
 }

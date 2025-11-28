@@ -8,7 +8,7 @@ import { loadProducts } from '@/redux/features/products/productAction'
 import { setPage } from '@/redux/features/products/productSlice'
 import { ProductCard } from './productCard'
 import { PaginationBlock } from './paginationBlock'
-import Loader from './ui/loader'
+import Loader from './custom-ui/loader'
 
 export function GridProducts() {
   const { items, isLoading, error, page, totalPages } = useSelector(
