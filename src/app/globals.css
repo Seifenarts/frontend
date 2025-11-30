@@ -57,11 +57,6 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-  body {
-    background-color: #f9fcfd;
-    color: hsl(var(--foreground));
-    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  }
 }
 
 @layer base {

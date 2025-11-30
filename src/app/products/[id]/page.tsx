@@ -10,13 +10,14 @@ import { useParams } from 'next/navigation'
 
 import ProductGallery from './productGallery'
 import ProductInfo from './productInfo'
-import ProductSizeSelector from './productSizeSelector'
+
 import ProductDeliveryInfo from './productDeliveryInfo'
 import ProductDescription from './productDescription'
 import MobileBuyPanel from './mobileBuyPanel'
 import RecommendedProductsCarousel from './recommendedProductsCarousel'
 import MobileImageSlider from './mobileImageSlider'
 import Loader from '@/components/custom-ui/loader'
+import ProductSizeSelector from './ProductSizeSelector'
 
 export default function ProductPage() {
   const [activeIndex, setActiveIndex] = useState(0)

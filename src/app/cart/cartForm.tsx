@@ -16,9 +16,9 @@ import {
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
-// -------------------------
-//   VALIDATION SCHEMA
-// -------------------------
+{
+  /* Validation schema*/
+}
 const Schema = z.object({
   firstName: z.string().min(3, { message: 'Pflichtfeld' }),
   lastName: z.string().min(3, { message: 'Pflichtfeld' }),
@@ -36,10 +36,9 @@ const Schema = z.object({
 
 export type FormData = z.infer<typeof Schema>
 
-// -------------------------
-//   COMPONENT
-// -------------------------
-
+{
+  /* Component*/
+}
 export default function CartForm() {
   const form = useForm<FormData>({
     resolver: zodResolver(Schema),
@@ -54,13 +53,13 @@ export default function CartForm() {
   }
 
   return (
-    <div className="max-w-[750px] w-full bg-[#f9fcfd] p-6 rounded-xl">
+    <div className="max-w-[750px] w-full bg-[#FFFFFF] p-6 rounded-xl">
       <h2 className="text-3xl font-bold mb-8">Empfängeradresse</h2>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* ---------------- ROW 1 ---------------- */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 bg-[#f9fcfd]">
             <FormField
               control={form.control}
               name="firstName"
@@ -89,7 +88,7 @@ export default function CartForm() {
           </div>
 
           {/* ---------------- ROW 2 ---------------- */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 bg-[#f9fcfd]">
             <FormField
               control={form.control}
               name="street"
@@ -118,7 +117,7 @@ export default function CartForm() {
           </div>
 
           {/* ---------------- ROW 3 ---------------- */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 bg-[#f9fcfd]">
             <FormField
               control={form.control}
               name="zip"
@@ -147,46 +146,52 @@ export default function CartForm() {
           </div>
 
           {/* ---------------- ROW 4 ---------------- */}
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Deutschland*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="bg-[#f9fcfd]">
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Deutschland*" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           {/* ---------------- ROW 5 ---------------- */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Email*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="bg-[#f9fcfd]">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Email*" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           {/* ---------------- ROW 6 ---------------- */}
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Telefonnummer des Empfängers" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="bg-[#f9fcfd]">
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Telefonnummer des Empfängers" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           {/* ---------------- DELIVERY METHOD ---------------- */}
           <FormField
