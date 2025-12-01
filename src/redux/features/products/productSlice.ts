@@ -107,4 +107,4 @@ export const productSlice = createSlice({
 })
 
 export const { clearProducts, setPage } = productSlice.actions
-export default productSlice
+export default productSlice.reducer

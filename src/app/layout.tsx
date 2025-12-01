@@ -6,6 +6,7 @@ import Header from '@/app/cart/header'
 import Footer from '@/components/footer'
 import { store } from '@/redux/store'
 import { Provider } from 'react-redux'
+import CartHydrator from '@/redux/features/cart/CartHydretor'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${inter.className} mx-auto antialiased bg-background text-gray-900 min-h-screen shadow-lg flex flex-col `}
       >
         <Provider store={store}>
+          <CartHydrator />
           <Header />
           <main className="flex-1"> {children}</main>
           <Footer />

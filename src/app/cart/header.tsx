@@ -6,6 +6,8 @@ import { Poppins } from 'next/font/google'
 import { Dialog, DialogTrigger, DialogContent, DialogClose } from '@/components/custom-ui/dialog'
 import { useAppDispatch } from '@/redux/hooks'
 import { loadProducts } from '@/redux/features/products/productAction'
+import { useSelector } from 'react-redux'
+import type { RootState } from '@/redux/store'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,6 +24,9 @@ const links = [
 
 const Header: FC = () => {
   const dispatch = useAppDispatch()
+  const items = useSelector((state: RootState) => state.cart.items)
+  const totalCount = items.reduce((sum, item) => sum + item.quantity, 0)
+
   const handleClick = () => {
     dispatch(loadProducts({ page: 0, size: 8 }))
   }
@@ -61,6 +66,7 @@ const Header: FC = () => {
               </Link>
             ))}
           </nav>
+
           <div className="flex items-center">
             <div className="relative -translate-y-1">
               <Link href="/cart">
@@ -71,6 +77,14 @@ const Header: FC = () => {
                   alt="basket_icon"
                   className="w-6 md:w-7 lg:w-7 "
                 />
+                {totalCount > 0 && (
+                  <span
+                    className="absolute -top-0 -right-2 bg-yellow-600 text-white
+              text-xs rounded-full w-4 h-4 flex items-center justify-center"
+                  >
+                    {totalCount}
+                  </span>
+                )}
               </Link>
             </div>
 

@@ -15,30 +15,17 @@ export interface CartState {
   items: CartItem[]
 }
 
-const loadCartFromLocalStorage = (): CartItem[] => {
-  if (typeof window === 'undefined') return []
-  try {
-    const stored = localStorage.getItem('cart')
-    return stored ? JSON.parse(stored) : []
-  } catch {
-    return []
-  }
-}
-
 const initialState: CartState = {
-  items: loadCartFromLocalStorage(),
-}
-
-const saveToLocalStorage = (items: CartItem[]) => {
-  if (typeof window != 'undefined') {
-    localStorage.setItem('cart', JSON.stringify(items))
-  }
+  items: [],
 }
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    setCartFromStorage(state, action: PayloadAction<CartItem[]>) {
+      state.items = action.payload
+    },
     addItemToCart: (state, action: PayloadAction<CartItem>) => {
       const newItem = action.payload
 
@@ -51,38 +38,38 @@ export const cartSlice = createSlice({
       } else {
         state.items.push(newItem)
       }
-
-      saveToLocalStorage(state.items)
     },
 
     increaseQuantity: (state, action: PayloadAction<{ id: number }>) => {
       const item = state.items.find((i) => i.id === action.payload.id)
       if (item) item.quantity += 1
-      saveToLocalStorage(state.items)
     },
 
     decreaseQuantity: (state, action: PayloadAction<{ id: number }>) => {
       const item = state.items.find((i) => i.id === action.payload.id)
       if (item && item.quantity > 1) item.quantity -= 1
-      saveToLocalStorage(state.items)
     },
 
     removeItem: (state, action: PayloadAction<{ id: number }>) => {
       state.items = state.items.filter((i) => !(i.id === action.payload.id))
-      saveToLocalStorage(state.items)
     },
 
     clearCart: (state) => {
       state.items = []
-      saveToLocalStorage([])
     },
   },
 })
 
-export const { addItemToCart, increaseQuantity, decreaseQuantity, removeItem, clearCart } =
-  cartSlice.actions
+export const {
+  setCartFromStorage,
+  addItemToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  removeItem,
+  clearCart,
+} = cartSlice.actions
 
 export const selectTotalPrice = (state: RootState) =>
   state.cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
-export default cartSlice
+export default cartSlice.reducer
