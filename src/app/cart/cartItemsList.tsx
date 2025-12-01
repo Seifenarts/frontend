@@ -10,6 +10,7 @@ import {
   decreaseQuantity,
   removeItem,
   selectTotalPrice,
+  clearCart,
 } from '@/redux/features/cart/cartSlice'
 
 export default function CartItemsList() {
@@ -40,10 +41,16 @@ export default function CartItemsList() {
 
             {/* Right content */}
             <div className="flex flex-col justify-between flex-1">
-              {/* Title */}
-              <div>
-                <p className="text-lg font-bold">{item.title}</p>
-                <p className="text-sm text-gray-600">{item.shotDescription}</p>
+              <div className="flex">
+                {/* Title */}
+                <div>
+                  <p className="text-lg font-bold">{item.title}</p>
+                  <p className="text-sm text-gray-600">{item.shotDescription}</p>
+                </div>
+                {/* Delete */}
+                <div className="pr-5">
+                  <button onClick={() => dispatch(removeItem({ id: item.id }))}>x</button>
+                </div>
               </div>
 
               {/* Quantity + Price */}
