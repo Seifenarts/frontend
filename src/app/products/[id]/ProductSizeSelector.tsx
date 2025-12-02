@@ -13,8 +13,8 @@ interface IProductSizeSelectorProps {
 const sizes = ['M', 'L', 'XL', 'XXL']
 
 export default function ProductSizeSelector({ selectedProduct }: IProductSizeSelectorProps) {
-  if (!selectedProduct) return null
   const dispatch = useAppDispatch()
+  if (!selectedProduct) return null
 
   const handleAddToCart = () => {
     if (!selectedProduct) return

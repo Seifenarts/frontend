@@ -10,7 +10,6 @@ import {
   decreaseQuantity,
   removeItem,
   selectTotalPrice,
-  clearCart,
 } from '@/redux/features/cart/cartSlice'
 
 export default function CartItemsList() {
