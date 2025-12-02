@@ -10,7 +10,7 @@ import { ProductCard } from './productCard'
 import { PaginationBlock } from './paginationBlock'
 import Loader from './custom-ui/loader'
 
-export function GridProducts() {
+export default function GridProducts() {
   const { items, isLoading, error, page, totalPages } = useSelector(
     (state: RootState) => state.products,
   )
