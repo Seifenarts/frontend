@@ -6,8 +6,8 @@ import type { RootState } from '@/redux/store'
 import { useAppDispatch } from '@/redux/hooks'
 import { loadProducts } from '@/redux/features/products/productAction'
 import { setPage } from '@/redux/features/products/productSlice'
-import { ProductCard } from './productCard'
-import { PaginationBlock } from './paginationBlock'
+import { ProductCard } from './ProductCard'
+import { PaginationBlock } from './PaginationBlock'
 import Loader from './custom-ui/loader'
 
 export default function GridProducts() {

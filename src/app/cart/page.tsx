@@ -1,7 +1,7 @@
 'use client'
 
-import CartItemsList from './cartItemsList'
-import CartForm from './cartForm'
+import CartItemsList from './CartItemsList'
+import CartForm from './CartForm'
 
 export default function OrderPage() {
   return (

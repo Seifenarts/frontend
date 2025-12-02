@@ -1,7 +1,7 @@
 'use client'
-import GridProducts from '@/components/gridProducts'
-import HeroSection from '@/components/heroSection'
 
+import GridProducts from '@/components/GridProducts'
+import HeroSection from '@/components/HeroSection'
 import React from 'react'
 
 const Home: React.FC = () => {

@@ -2,8 +2,8 @@
 
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/app/cart/header'
-import Footer from '@/components/footer'
+import Header from '@/app/cart/Header'
+import Footer from '@/components/Footer'
 import { store } from '@/redux/store'
 import { Provider } from 'react-redux'
 import CartHydrator from '@/redux/features/cart/CartHydretor'
