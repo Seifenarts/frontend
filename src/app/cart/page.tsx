@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { createOrder } from '@/redux/features/cart/cartAction'
 import { useRef } from 'react'
 import { useAppDispatch } from '@/redux/hooks'
+import { useRouter } from 'next/navigation'
 
 export default function OrderPage() {
   const dispatch = useAppDispatch()
@@ -22,8 +23,13 @@ export default function OrderPage() {
     },
   })
 
-  const onSubmit = (values: FormData) => {
-    dispatch(createOrder(values))
+  const router = useRouter()
+  const onSubmit = async (values: FormData) => {
+    const result = await dispatch(createOrder(values))
+
+    if (createOrder.fulfilled.match(result)) {
+      router.push('/payment')
+    }
   }
 
   return (

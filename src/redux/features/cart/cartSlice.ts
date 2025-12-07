@@ -1,5 +1,6 @@
 import type { RootState } from '@/redux/store'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createOrder } from './cartAction'
 
 export interface CartItem {
   id: number
@@ -13,10 +14,16 @@ export interface CartItem {
 
 export interface CartState {
   items: CartItem[]
+  orderId: number | null
+  isLoading: boolean
+  error: string | null
 }
 
 const initialState: CartState = {
   items: [],
+  orderId: null,
+  isLoading: false,
+  error: null,
 }
 
 export const cartSlice = createSlice({
@@ -57,6 +64,22 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.items = []
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createOrder.pending, (state) => {
+        state.isLoading = true
+        state.error = null
+      })
+      .addCase(createOrder.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.orderId = action.payload.id
+        state.items = []
+      })
+      .addCase(createOrder.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload ?? 'Unknown error'
+      })
   },
 })
 
