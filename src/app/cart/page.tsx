@@ -1,13 +1,39 @@
 'use client'
 
-import CartItemsList from './CartItemsList'
+import { Form } from '@/components/ui/form'
+import { useForm } from 'react-hook-form'
+import { Schema, FormData } from './orderForm.schema'
 import CartForm from './CartForm'
+import CartItemsList from './CartItemsList'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { createOrder } from '@/redux/features/cart/cartAction'
+import { useRef } from 'react'
+import { useAppDispatch } from '@/redux/hooks'
 
 export default function OrderPage() {
+  const dispatch = useAppDispatch()
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const form = useForm<FormData>({
+    resolver: zodResolver(Schema),
+    defaultValues: {
+      deliveryMethod: 'delivery',
+      country: 'Deutschland',
+    },
+  })
+
+  const onSubmit = (values: FormData) => {
+    dispatch(createOrder(values))
+  }
+
   return (
-    <div className="flex justify-center items mt-12">
-      <CartForm />
-      <CartItemsList />
-    </div>
+    <Form {...form}>
+      <form ref={formRef} onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="flex justify-center items-center mt-12">
+          <CartForm />
+          <CartItemsList formRef={formRef} />
+        </div>
+      </form>
+    </Form>
   )
 }

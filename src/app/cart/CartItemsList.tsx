@@ -11,8 +11,13 @@ import {
   removeItem,
   selectTotalPrice,
 } from '@/redux/features/cart/cartSlice'
+import { useFormContext } from 'react-hook-form'
 
-export default function CartItemsList() {
+export default function CartItemsList({
+  formRef,
+}: {
+  formRef: React.RefObject<HTMLFormElement | null>
+}) {
   const items = useSelector((state: RootState) => state.cart.items)
   const totalPrice = useSelector(selectTotalPrice)
   const dispatch = useDispatch()
@@ -100,7 +105,10 @@ export default function CartItemsList() {
       </div>
 
       {/* Checkout button */}
-      <Button className="h-12 bg-black text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors mt-2">
+      <Button
+        onClick={() => formRef.current?.requestSubmit()}
+        className="h-12 bg-black text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black transition-colors mt-2"
+      >
         WEITER ZU KASSE
       </Button>
 
