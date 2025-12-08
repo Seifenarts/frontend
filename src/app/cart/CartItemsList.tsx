@@ -14,8 +14,10 @@ import {
 
 export default function CartItemsList({
   formRef,
+  onSubmit,
 }: {
   formRef: React.RefObject<HTMLFormElement | null>
+  onSubmit: () => void
 }) {
   const items = useSelector((state: RootState) => state.cart.items)
   const loading = useSelector((state: RootState) => state.cart.isLoading)
@@ -106,7 +108,7 @@ export default function CartItemsList({
 
       {/* Checkout button */}
       <Button
-        onClick={() => formRef.current?.requestSubmit()}
+        onClick={onSubmit}
         className="h-12 bg-black text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black active:bg-[#a8893f] active:text-black  transition-colors mt-2"
       >
         {loading ? 'Bitte warten...' : 'WEITER ZU KASSE'}

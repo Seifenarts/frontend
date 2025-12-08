@@ -1,3 +1,4 @@
+import { api } from '@/redux/axios'
 import type { RootState } from '@/redux/store'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -19,33 +20,25 @@ export const createOrder = createAsyncThunk<
   CustomerFormValues,
   { rejectValue: string; state: RootState }
 >('order/createOrder', async (formValues, { getState, rejectWithValue }) => {
-  const cartItems = getState().cart.items
-  const userId = 1 /*getState().user.id ?? 'quest'*/
-  const products = cartItems.map((item) => ({
-    id: item.id,
-    quantity: item.quantity,
-  }))
-  const customer = {
-    ...formValues,
-  }
+  try {
+    const cartItems = getState().cart.items
 
-  const body = {
-    products,
-    customer,
-    userId,
-  }
+    const products = cartItems.map((item) => ({
+      id: item.id,
+      quantity: item.quantity,
+    }))
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/order`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+    const body = {
+      products,
+      customer: formValues,
+      userId: 1,
+    }
 
-  if (!response.ok) {
+    const response = await api.post('/order', body)
+
+    return response.data
+  } catch (err) {
+    console.error(err)
     return rejectWithValue('Order failed')
   }
-
-  return await response.json()
 })

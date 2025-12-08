@@ -37,7 +37,7 @@ export default function OrderPage() {
       <form ref={formRef} onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex justify-center items-center mt-12">
           <CartForm />
-          <CartItemsList formRef={formRef} />
+          <CartItemsList formRef={formRef} onSubmit={form.handleSubmit(onSubmit)} />
         </div>
       </form>
     </Form>
