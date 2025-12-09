@@ -2,6 +2,7 @@
 import type { Product } from '@/redux/features/products/productSlice'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import BuyButton from './BuyButton'
 
 interface IMobileBuyPanelProps {
   selectedProduct: Product | null
@@ -39,26 +40,7 @@ export default function MobileBuyPanel({ selectedProduct }: IMobileBuyPanelProps
         <span className="text-3xl leading-none">{selectedProduct?.size}</span>
         <span className="text-2xl leading-none">{selectedProduct?.price ?? '-'}€</span>
       </div>
-
-      <Button
-        className="
-      flex-1
-      h-full
-      text-xl
-      ml-4
-      flex
-      items-center
-      justify-center
-      bg-black
-      text-[#be9f4b]
-      font-bold
-      hover:bg-[#be9f4b]
-      hover:text-black
-      transition-colors
-    "
-      >
-        JETZT BESTELLEN
-      </Button>
+      <BuyButton selectedProduct={selectedProduct} variant="mobile" />
     </div>
   )
 }

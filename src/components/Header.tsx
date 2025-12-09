@@ -68,7 +68,7 @@ const Header: FC = () => {
           </nav>
 
           <div className="flex items-center">
-            <div className="relative -translate-y-1">
+            <div className="relative -translate-y-1 right-3">
               <Link href="/cart">
                 <Image
                   src="/basket_icon.png"
@@ -102,7 +102,7 @@ const Header: FC = () => {
           </div>
           <Dialog>
             <DialogTrigger
-              className="sm:hidden mr-4 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFD5D4] absolute right-0"
+              className="sm:hidden mr-4 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFD5D4] absolute right-0 "
               aria-label="Open menu"
             >
               <svg
