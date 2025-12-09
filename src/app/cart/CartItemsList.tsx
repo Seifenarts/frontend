@@ -25,7 +25,7 @@ export default function CartItemsList({
   const dispatch = useDispatch()
 
   return (
-    <div className="w-full max-w-[480px] bg-white rounded-xl shadow p-6 flex flex-col gap-6">
+    <div className="w-full max-w-[480px] bg-white rounded-xl shadow p-6 mx-2 flex flex-col gap-6">
       {/* Items list */}
       <div
         className={`flex flex-col gap-8 ${
