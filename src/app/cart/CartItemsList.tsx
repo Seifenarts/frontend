@@ -13,7 +13,6 @@ import {
 } from '@/redux/features/cart/cartSlice'
 
 export default function CartItemsList({
-  formRef,
   onSubmit,
 }: {
   formRef: React.RefObject<HTMLFormElement | null>

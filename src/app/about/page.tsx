@@ -13,7 +13,7 @@ export default function Page(): JSX.Element {
           <div className="relative w-60 h-80 lg:w-72 lg:h-[420px] flex-shrink-0">
             <Image
               src="https://storage.googleapis.com/img_seifen/Screenshot_19.jpg"
-              alt="Ana"
+              alt="Anna"
               fill
               className="object-cover rounded-xl shadow-xl"
             />
@@ -66,23 +66,26 @@ export default function Page(): JSX.Element {
         {/* Grid with 3 vertical GIFs */}
         <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="w-full flex justify-center">
-            <img
+            <Image
               src="https://storage.googleapis.com/img_seifen/chrome_sEjtLnNCHH.gif"
               alt="Workshop animation 3"
+              fill
               className="rounded-2xl shadow-lg w-[260px] h-auto object-cover"
             />
           </div>
           <div className="w-full flex justify-center">
-            <img
+            <Image
               src="https://storage.googleapis.com/img_seifen/chrome_eA2pfK1llx.gif"
               alt="Workshop animation 2"
+              fill
               className="rounded-2xl shadow-lg w-[260px] h-auto object-cover"
             />
           </div>
           <div className="w-full flex justify-center">
-            <img
+            <Image
               src="https://storage.googleapis.com/img_seifen/chrome_ZUMMyXn9rj.gif"
               alt="Workshop animation 1"
+              fill
               className="rounded-2xl shadow-lg w-[260px] h-auto object-cover"
             />
           </div>

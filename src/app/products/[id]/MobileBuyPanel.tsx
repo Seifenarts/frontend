@@ -1,7 +1,6 @@
 'use client'
 import type { Product } from '@/redux/features/products/productSlice'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 import BuyButton from './BuyButton'
 
 interface IMobileBuyPanelProps {
