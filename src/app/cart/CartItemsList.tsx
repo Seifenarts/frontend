@@ -5,23 +5,26 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Button } from '@/components/custom-ui/button'
 import type { RootState } from '@/redux/store'
 
-import {
-  increaseQuantity,
-  decreaseQuantity,
-  removeItem,
-  selectTotalPrice,
-} from '@/redux/features/cart/cartSlice'
+import { increaseQuantity, decreaseQuantity, removeItem } from '@/redux/features/cart/cartSlice'
 
 export default function CartItemsList({
+  deliveryMethod,
   onSubmit,
 }: {
+  deliveryMethod: 'delivery' | 'pickup'
   formRef: React.RefObject<HTMLFormElement | null>
   onSubmit: () => void
 }) {
   const items = useSelector((state: RootState) => state.cart.items)
   const loading = useSelector((state: RootState) => state.cart.isLoading)
-  const totalPrice = useSelector(selectTotalPrice)
   const dispatch = useDispatch()
+
+  const totalOrderPrice = items.reduce((sum, item) => {
+    const base = item.price * item.quantity
+    const delivery = deliveryMethod === 'delivery' ? item.deliveryPrice * item.quantity : 0
+
+    return sum + base + delivery
+  }, 0)
 
   return (
     <div className="w-full max-w-[480px] bg-white rounded-xl shadow p-6 mx-2 flex flex-col gap-6">
@@ -33,67 +36,75 @@ export default function CartItemsList({
       >
         {items.length === 0 && <p className="text-gray-600 text-center">Der Warenkorb ist leer</p>}
 
-        {items.map((item) => (
-          <div key={item.id} className="flex gap-4 w-full">
-            {/* Image */}
-            <Image
-              src={item.imageUrl}
-              width={110}
-              height={110}
-              alt={item.title}
-              className="rounded-lg object-cover"
-            />
+        {items.map((item) => {
+          const basePrice = item.price * item.quantity
+          const deliveryPrice =
+            deliveryMethod === 'delivery' ? item.deliveryPrice * item.quantity : 0
 
-            {/* Right content */}
-            <div className="flex flex-col justify-between flex-1">
-              <div className="flex">
-                {/* Title */}
-                <div>
-                  <p className="text-lg font-bold">{item.title}</p>
-                  <p className="text-sm text-gray-600">{item.shotDescription}</p>
-                </div>
-                {/* Delete */}
-                <div className="pr-5">
-                  <button onClick={() => dispatch(removeItem({ id: item.id }))}>x</button>
-                </div>
-              </div>
+          const itemTotal = basePrice + deliveryPrice
 
-              {/* Quantity + Price */}
-              <div className="flex items-center justify-between mx-4">
-                {/* Size*/}
-                <div>
-                  <p className="text-4xl font-bold">{item.size}</p>
-                </div>
+          return (
+            <div key={item.id} className="flex gap-4 w-full">
+              {/* Image */}
+              <Image
+                src={item.imageUrl}
+                width={110}
+                height={110}
+                alt={item.title}
+                className="rounded-lg object-cover"
+              />
 
-                {/* Quantity */}
-                <div className="flex items-center  gap-2 ">
-                  <button
-                    onClick={() => dispatch(decreaseQuantity({ id: item.id }))}
-                    className="border px-2 rounded text-lg"
-                  >
-                    –
-                  </button>
+              {/* Right content */}
+              <div className="flex flex-col justify-between flex-1">
+                <div className="flex">
+                  <div>
+                    <p className="text-lg font-bold">{item.title}</p>
+                    <p className="text-sm text-gray-600">{item.shotDescription}</p>
+                  </div>
 
-                  <p className="font-semibold">{item.quantity}</p>
-
-                  <button
-                    onClick={() => dispatch(increaseQuantity({ id: item.id }))}
-                    className="border px-2 rounded text-lg"
-                  >
-                    +
-                  </button>
+                  <div className="pr-5">
+                    <button onClick={() => dispatch(removeItem({ id: item.id }))}>x</button>
+                  </div>
                 </div>
 
-                {/* Price */}
-                <div className="text-right">
-                  <p className="font-bold text-[18px]">{item.price * item.quantity} €</p>
+                {/* Quantity + Price */}
+                <div className="flex items-center justify-between mx-4">
+                  <div>
+                    <p className="text-4xl font-bold">{item.size}</p>
+                  </div>
 
-                  <p className="text-xs text-gray-600">inkl. Versand</p>
+                  {/* Quantity */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => dispatch(decreaseQuantity({ id: item.id }))}
+                      className="border px-2 rounded text-lg"
+                    >
+                      –
+                    </button>
+
+                    <p className="font-semibold">{item.quantity}</p>
+
+                    <button
+                      onClick={() => dispatch(increaseQuantity({ id: item.id }))}
+                      className="border px-2 rounded text-lg"
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  {/* Price */}
+                  <div className="text-right">
+                    <p className="font-bold text-[18px]">{itemTotal} €</p>
+
+                    {deliveryMethod === 'delivery' && (
+                      <p className="text-xs text-gray-600">inkl. Versand {deliveryPrice} €</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* Divider */}
@@ -102,18 +113,17 @@ export default function CartItemsList({
       {/* Total */}
       <div className="flex justify-end gap-12 text-lg font-bold">
         <span>Gesamt:</span>
-        <span>{totalPrice} €</span>
+        <span>{totalOrderPrice} €</span>
       </div>
 
       {/* Checkout button */}
       <Button
         onClick={onSubmit}
-        className="h-12 bg-black text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black active:bg-[#a8893f] active:text-black  transition-colors mt-2"
+        className="h-12 bg-black text-[#be9f4b] font-bold hover:bg-[#be9f4b] hover:text-black active:bg-[#a8893f] active:text-black transition-colors mt-2"
       >
         {loading ? 'Bitte warten...' : 'WEITER ZU KASSE'}
       </Button>
 
-      {/* Payments icons */}
       <div className="flex justify-center gap-3">
         <Image src="/Mastercard.svg" width={37} height={25} alt="Mastercard" />
         <Image src="/visa.svg" width={37} height={25} alt="Visa" />

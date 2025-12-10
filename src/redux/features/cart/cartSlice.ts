@@ -10,6 +10,7 @@ export interface CartItem {
   imageUrl: string
   size: string
   quantity: number
+  deliveryPrice: number
 }
 
 export interface CartState {

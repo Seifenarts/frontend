@@ -23,6 +23,7 @@ export default function OrderPage() {
     },
   })
 
+  const deliveryMethod = form.watch('deliveryMethod')
   const router = useRouter()
   const onSubmit = async (values: FormData) => {
     const result = await dispatch(createOrder(values))
@@ -37,7 +38,11 @@ export default function OrderPage() {
       <form ref={formRef} onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col justify-center items-center mt-12 md:flex-row">
           <CartForm />
-          <CartItemsList formRef={formRef} onSubmit={form.handleSubmit(onSubmit)} />
+          <CartItemsList
+            formRef={formRef}
+            onSubmit={form.handleSubmit(onSubmit)}
+            deliveryMethod={deliveryMethod}
+          />
         </div>
       </form>
     </Form>
