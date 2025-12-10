@@ -69,7 +69,8 @@ export default function Page(): JSX.Element {
             <Image
               src="https://storage.googleapis.com/img_seifen/chrome_sEjtLnNCHH.gif"
               alt="Workshop animation 3"
-              fill
+              width={260}
+              height={100}
               className="rounded-2xl shadow-lg w-[260px] h-auto object-cover"
             />
           </div>
@@ -77,7 +78,8 @@ export default function Page(): JSX.Element {
             <Image
               src="https://storage.googleapis.com/img_seifen/chrome_eA2pfK1llx.gif"
               alt="Workshop animation 2"
-              fill
+              width={260}
+              height={100}
               className="rounded-2xl shadow-lg w-[260px] h-auto object-cover"
             />
           </div>
@@ -85,7 +87,8 @@ export default function Page(): JSX.Element {
             <Image
               src="https://storage.googleapis.com/img_seifen/chrome_ZUMMyXn9rj.gif"
               alt="Workshop animation 1"
-              fill
+              width={260}
+              height={100}
               className="rounded-2xl shadow-lg w-[260px] h-auto object-cover"
             />
           </div>
