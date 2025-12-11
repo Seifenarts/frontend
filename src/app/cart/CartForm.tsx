@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { FormData } from './orderForm.schema'
 import { Input } from '@/components/ui/input'
@@ -8,6 +8,8 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 export default function CartForm() {
   const form = useFormContext<FormData>()
+  const deliveryMethod = useWatch({ name: 'deliveryMethod', control: form.control })
+  const isPickup = deliveryMethod === 'pickup'
 
   return (
     <div className="max-w-[750px] w-full bg-[#FFFFFF] p-6 rounded-xl">
@@ -43,31 +45,40 @@ export default function CartForm() {
         </div>
 
         {/* ---------------- ROW 2 ---------------- */}
-        <div className="grid grid-cols-3 gap-4 bg-[#f9fcfd]">
+        <div className="grid grid-cols-3 gap-4 bg-[#f9fcfd] ">
           <FormField
             control={form.control}
             name="street"
-            render={({ field }) => (
-              <FormItem className="col-span-2">
-                <FormControl>
-                  <Input placeholder="Straße*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem
+                  className={
+                    'col-span-2 transition-opacity' +
+                    (isPickup ? 'opacity-50 pointer-events-none' : '')
+                  }
+                >
+                  <FormControl>
+                    <Input placeholder="Straße*" {...field} disabled={isPickup} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )
+            }}
           />
 
           <FormField
             control={form.control}
             name="houseNumber"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Nummer*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem className={isPickup ? 'opacity-50 pointer-events-none' : ''}>
+                  <FormControl>
+                    <Input placeholder="Nummer*" {...field} disabled={isPickup} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )
+            }}
           />
         </div>
 
@@ -76,27 +87,31 @@ export default function CartForm() {
           <FormField
             control={form.control}
             name="zipCode"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="PLZ*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem className={isPickup ? 'opacity-50 pointer-events-none' : ''}>
+                  <FormControl>
+                    <Input placeholder="PLZ*" {...field} disabled={isPickup} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )
+            }}
           />
 
           <FormField
             control={form.control}
             name="city"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Ort*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem className={isPickup ? 'opacity-50 pointer-events-none' : ''}>
+                  <FormControl>
+                    <Input placeholder="Ort*" {...field} disabled={isPickup} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )
+            }}
           />
         </div>
 
@@ -105,14 +120,16 @@ export default function CartForm() {
           <FormField
             control={form.control}
             name="country"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Deutschland*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem className={isPickup ? 'opacity-50 pointer-events-none' : ''}>
+                  <FormControl>
+                    <Input placeholder="Deutschland*" {...field} disabled={isPickup} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )
+            }}
           />
         </div>
 
@@ -121,14 +138,16 @@ export default function CartForm() {
           <FormField
             control={form.control}
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Email*" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem className={isPickup ? 'opacity-50 pointer-events-none' : ''}>
+                  <FormControl>
+                    <Input placeholder="Email*" {...field} disabled={isPickup} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )
+            }}
           />
         </div>
 
@@ -137,14 +156,20 @@ export default function CartForm() {
           <FormField
             control={form.control}
             name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Telefonnummer des Empfängers" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem className={isPickup ? 'opacity-50 pointer-events-none' : ''}>
+                  <FormControl>
+                    <Input
+                      placeholder="Telefonnummer des Empfängers*"
+                      {...field}
+                      disabled={isPickup}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )
+            }}
           />
         </div>
 
