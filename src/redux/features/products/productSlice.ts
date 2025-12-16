@@ -12,6 +12,7 @@ export interface Product {
   composition: string
   aromas: string[]
   imageUrls: string[]
+  stockStatus: boolean
 }
 
 export interface ProductResponse {

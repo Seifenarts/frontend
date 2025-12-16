@@ -23,9 +23,17 @@ interface ProductCardProps {
   description: string
   price: string
   imageUrl: string
+  stockStatus: boolean
 }
 
-export function ProductCard({ id, title, description, price, imageUrl }: ProductCardProps) {
+export function ProductCard({
+  id,
+  title,
+  description,
+  price,
+  imageUrl,
+  stockStatus,
+}: ProductCardProps) {
   return (
     <Link href={`/products/${id}`} className="block">
       <Card className="bg-transparent shadow-none border-none w-full h-full flex flex-col">
@@ -50,8 +58,12 @@ export function ProductCard({ id, title, description, price, imageUrl }: Product
             {description}
           </CardDescription>
         </CardContent>
-        <CardFooter className="flex text-sm text-green-500">
-          <p>Verfügbar – bis zu 5 Werktage Lieferzeit</p>
+        <CardFooter className="flex text-sm">
+          {stockStatus ? (
+            <p className="text-green-500"> Verfügbar – bis zu 5 Werktage Lieferzeit</p>
+          ) : (
+            <p className="text-[#BE9F4B]"> Auf Bestellung – Lieferzeit bis zu 10 Werktage</p>
+          )}
         </CardFooter>
       </Card>
     </Link>

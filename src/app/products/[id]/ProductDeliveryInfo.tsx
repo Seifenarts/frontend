@@ -1,7 +1,17 @@
 'use client'
 import Image from 'next/image'
+import { getDeliveryDateRange } from '@/lib/deliveryDates'
 
-export default function ProductDeliveryInfo() {
+interface ProductDeliveryInfoProps {
+  stockStatus: boolean
+}
+
+const standardDelivery = getDeliveryDateRange('standard')
+const extendedDelivery = getDeliveryDateRange('madeToOrder')
+
+export default function ProductDeliveryInfo({
+  stockStatus,
+}: ProductDeliveryInfoProps): React.JSX.Element {
   return (
     <div className="flex flex-col mdx:flex-col sm:flex-row max-[900px]:w-full mdx:gap-1 sm:gap-5 my-6 px-4 ">
       <div className="flex gap-2">
@@ -15,8 +25,18 @@ export default function ProductDeliveryInfo() {
           />
         </div>
         <div className="flex flex-col">
-          <p className="text-green-600 font-bold text-sm xl:text-base">
-            Lieferbar vom 08.07 bis 15.07
+          <p className="font-bold text-sm xl:text-base">
+            {stockStatus ? (
+              <p className="text-green-600">
+                {' '}
+                Lieferbar vom {standardDelivery.from} bis {standardDelivery.to}
+              </p>
+            ) : (
+              <p className="text-[#BE9F4B]">
+                {' '}
+                Auf Bestellung – Lieferzeit vom {extendedDelivery.from} bis {extendedDelivery.to}
+              </p>
+            )}
           </p>
           <p className="text-sm xl:text-base">Lieferung nach Deutschland</p>
         </div>

@@ -54,7 +54,7 @@ export default function ProductPage() {
             <div className="lg:max-w-[380px]">
               <ProductSizeSelector selectedProduct={selectedProduct} />
               <div className="w-1/2 h-[1px] bg-gray-300 mx-auto my-6 max-[900px]:w-[90%]"></div>
-              <ProductDeliveryInfo />
+              <ProductDeliveryInfo stockStatus={selectedProduct.stockStatus} />
             </div>
           </div>
           <ProductDescription selectedProduct={selectedProduct} />

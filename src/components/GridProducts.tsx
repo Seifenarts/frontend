@@ -44,6 +44,7 @@ export default function GridProducts() {
               description={product.shortDescription}
               price={`€${product.price}`}
               imageUrl={product.imageUrls?.[0] || '/placeholder.png'}
+              stockStatus={product.stockStatus}
             />
           ))
         ) : (
