@@ -25,7 +25,7 @@ export default function ProductGallery({
             width={150}
             height={120}
             loading="lazy"
-            className={`rounded-[5%] cursor-pointer w-[120px] lg:w-[150px] ${
+            className={`rounded-[5%] cursor-pointer w-[120px] lg:w-[150px]  ${
               index + 1 === activeIndex ? 'ring-2 ring-[#312a16]' : ''
             }`}
             onClick={() => setActiveIndex(index + 1)}

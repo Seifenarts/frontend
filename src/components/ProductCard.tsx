@@ -38,12 +38,13 @@ export function ProductCard({
     <Link href={`/products/${id}`} className="block">
       <Card className="bg-transparent shadow-none border-none w-full h-full flex flex-col">
         <CardHeader>
-          <Image
+          <img
             src={imageUrl}
+            alt={title}
             width={350}
             height={350}
-            alt={title}
             className="w-full max-w-[350px] h-[350px] shadow-lg object-cover rounded-[15%]"
+            loading="lazy"
           />
         </CardHeader>
         <CardContent className="flex-1 max-w-[350px]">

@@ -5,11 +5,18 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/f
 import { FormData } from './orderForm.schema'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { getDeliveryDateRange } from '@/lib/deliveryDates'
+import { useSelector } from 'react-redux'
+import type { RootState } from '@/redux/store'
+
+const standardDelivery = getDeliveryDateRange('standard')
+const extendedDelivery = getDeliveryDateRange('madeToOrder')
 
 export default function CartForm() {
   const form = useFormContext<FormData>()
   const deliveryMethod = useWatch({ name: 'deliveryMethod', control: form.control })
   const isPickup = deliveryMethod === 'pickup'
+  const { selectedProduct } = useSelector((state: RootState) => state.products)
 
   return (
     <div className="max-w-[750px] w-full bg-[#FFFFFF] p-6 rounded-xl">

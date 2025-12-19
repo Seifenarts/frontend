@@ -45,7 +45,7 @@ const Header: FC = () => {
           ))}
         </nav>
 
-        <Link href="/" onClick={handleClick} className="mx-4 sm:mx-0">
+        <Link href="/" onClick={handleClick} className="hidden sm:flex mx-4 sm:mx-0">
           <Image
             src="/logo.png"
             width={350}
