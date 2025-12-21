@@ -47,7 +47,7 @@ export function ProductCard({
           />
         </CardHeader>
         <CardContent className="flex-1 max-w-[350px]">
-          <CardTitle className={`${inter.className}  flex justify-between mb-1`}>
+          <CardTitle className={`${inter.className} flex justify-between mb-1`}>
             <span className="font-bold">{title}</span>
             <div className="flex gap-1">
               <span>ab</span>
@@ -62,7 +62,7 @@ export function ProductCard({
           {stockStatus ? (
             <p className="text-green-500"> Verfügbar – bis zu 5 Werktage Lieferzeit</p>
           ) : (
-            <p className="text-[#BE9F4B]"> Auf Bestellung – Lieferzeit bis zu 10 Werktage</p>
+            <p className="text-[#BE9F4B]"> Bestellung – Lieferzeit bis zu 10 Werktage</p>
           )}
         </CardFooter>
       </Card>

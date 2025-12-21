@@ -34,7 +34,7 @@ export default function ProductDeliveryInfo({
             ) : (
               <p className="text-[#BE9F4B]">
                 {' '}
-                Auf Bestellung – Lieferzeit vom {extendedDelivery.from} bis {extendedDelivery.to}
+                Bestellung – Lieferzeit vom {extendedDelivery.from} bis {extendedDelivery.to}
               </p>
             )}
           </p>
