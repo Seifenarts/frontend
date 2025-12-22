@@ -123,21 +123,31 @@ const Header: FC = () => {
 
             <DialogContent>
               <div className="flex flex-col space-y-4 mt-8">
-                <Link href="/" className="font-medium text-lg hover:text-[#FFD5D4]">
-                  Home
-                </Link>
-                <Link href="/products" className="font-medium text-lg hover:text-[#FFD5D4]">
-                  Seifenherstellung
-                </Link>
-                <Link href="/about" className="font-medium text-lg hover:text-[#FFD5D4]">
-                  Über mich
-                </Link>
-                <Link href="/contact" className="font-medium text-lg hover:text-[#FFD5D4]">
-                  Kontakt
-                </Link>
-                <Link href="/languages" className="font-medium text-lg hover:text-[#FFD5D4]">
-                  Languages
-                </Link>
+                <DialogClose asChild>
+                  <Link href="/" className="font-medium text-lg hover:text-[#FFD5D4]">
+                    Home
+                  </Link>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Link href="/products" className="font-medium text-lg hover:text-[#FFD5D4]">
+                    Seifenherstellung
+                  </Link>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Link href="/about" className="font-medium text-lg hover:text-[#FFD5D4]">
+                    Über mich
+                  </Link>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Link href="/contact" className="font-medium text-lg hover:text-[#FFD5D4]">
+                    Kontakt
+                  </Link>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Link href="/languages" className="font-medium text-lg hover:text-[#FFD5D4]">
+                    Languages
+                  </Link>
+                </DialogClose>
               </div>
               <DialogClose className="absolute top-4 right-4 p-2" aria-label="Close menu">
                 <svg

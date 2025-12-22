@@ -10,7 +10,7 @@ const Home: React.FC = () => {
       <div>
         <HeroSection />
       </div>
-      <div className="mt-32 ml-2 mr-2 ">
+      <div className="mt-16 ml-2 mr-2 ">
         <GridProducts />
       </div>
     </>
