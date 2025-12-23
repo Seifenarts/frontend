@@ -11,6 +11,7 @@ export interface CartItem {
   size: string
   quantity: number
   deliveryPrice: number
+  stockStatus: boolean
 }
 
 export interface CartState {

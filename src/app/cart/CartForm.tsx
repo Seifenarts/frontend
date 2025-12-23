@@ -5,8 +5,16 @@ import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/f
 import { FormData } from './orderForm.schema'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { getDeliveryDateRange } from '@/lib/deliveryDates'
 
-export default function CartForm() {
+interface ICartForm {
+  madeToOrder: boolean
+}
+
+const standardDelivery = getDeliveryDateRange('standard')
+const extendedDelivery = getDeliveryDateRange('madeToOrder')
+
+export default function CartForm({ madeToOrder }: ICartForm) {
   const form = useFormContext<FormData>()
   const deliveryMethod = useWatch({ name: 'deliveryMethod', control: form.control })
   const isPickup = deliveryMethod === 'pickup'
@@ -174,34 +182,44 @@ export default function CartForm() {
         </div>
 
         {/* ---------------- DELIVERY METHOD ---------------- */}
+
         <FormField
           control={form.control}
           name="deliveryMethod"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="mt-6">
               <RadioGroup
                 onValueChange={field.onChange}
                 value={field.value}
-                className="flex gap-10 mt-6"
+                className="grid grid-cols-2 gap-6"
               >
                 {/* DELIVERY */}
-                <div className="flex items-center gap-3">
-                  <RadioGroupItem value="delivery" />
+                <label className="flex items-start gap-3 border rounded-lg p-4 cursor-pointer">
+                  <RadioGroupItem value="delivery" className="mt-1" />
                   <div>
-                    <p className="font-semibold text-green-700">Lieferbar vom 08.07. bis 15.07.</p>
-                    <p className="text-sm">Lieferung nach Deutschland</p>
+                    {madeToOrder ? (
+                      <p className="font-semibold text-[#BE9F4B]">
+                        Einer oder mehrere Artikel im Warenkorb sind nicht auf Lager, Lieferzeit vom{' '}
+                        {extendedDelivery.from} bis {extendedDelivery.to}
+                      </p>
+                    ) : (
+                      <p className="font-semibold text-green-700">
+                        Lieferbar vom 08.07. bis 15.07.
+                      </p>
+                    )}
                   </div>
-                </div>
+                </label>
 
                 {/* PICKUP */}
-                <div className="flex items-center gap-3">
-                  <RadioGroupItem value="pickup" />
+                <label className="flex items-start gap-3 border rounded-lg p-4 cursor-pointer">
+                  <RadioGroupItem value="pickup" className="mt-1" />
                   <div>
                     <p className="font-semibold">Abholung im Studio</p>
                     <p className="text-sm text-gray-600">Oberer Grifflenberg 83, 42119 Wuppertal</p>
                   </div>
-                </div>
+                </label>
               </RadioGroup>
+
               <FormMessage />
             </FormItem>
           )}

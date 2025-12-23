@@ -7,10 +7,8 @@ import { findProduct } from '@/redux/features/products/productAction'
 import { useEffect, useState } from 'react'
 import React from 'react'
 import { useParams } from 'next/navigation'
-
 import ProductGallery from './ProductGallery'
 import ProductInfo from './ProductInfo'
-
 import ProductDeliveryInfo from './ProductDeliveryInfo'
 import ProductDescription from './ProductDescription'
 import MobileBuyPanel from './MobileBuyPanel'

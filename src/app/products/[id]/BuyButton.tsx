@@ -30,6 +30,7 @@ export default function BuyButton({ selectedProduct, variant }: IBuyButtonProps)
         size: selectedProduct.size,
         deliveryPrice: selectedProduct.deliveryPrice,
         quantity: 1,
+        stockStatus: selectedProduct.stockStatus,
       }),
     )
 
