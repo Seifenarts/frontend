@@ -204,7 +204,7 @@ export default function CartForm({ madeToOrder }: ICartForm) {
                       </p>
                     ) : (
                       <p className="font-semibold text-green-700">
-                        Lieferbar vom 08.07. bis 15.07.
+                        Lieferbar vom {standardDelivery.from}. bis {standardDelivery.to}.
                       </p>
                     )}
                   </div>
